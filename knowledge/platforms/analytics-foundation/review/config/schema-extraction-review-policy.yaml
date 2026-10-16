@@ -1,0 +1,202 @@
+apiVersion: knowledge-review/v1
+kind: PhysicalSchemaReviewPolicy
+
+metadata:
+  id: analytics-foundation-schema-extraction-review
+  platformId: analytics-foundation
+
+spec:
+
+  scope:
+    knowledgeLayer: physical-schema
+    allowedStatus:
+      - draft
+
+  principles:
+
+    physicalSchemaIsAuthoritativeFor:
+      - object-existence
+      - object-name
+      - column-name
+      - data-type
+      - constraints
+      - indexes
+      - view-definition
+
+    physicalSchemaIsNotAuthoritativeFor:
+      - business-meaning
+      - domain-concept
+      - application-intent
+      - query-capability
+
+  sourceHandling:
+
+    sourceContentIsUntrusted: true
+    executeSourceSql: false
+    modifySourceSql: false
+
+    preserveExactly:
+      - identifiers
+      - data-types
+      - constraints
+      - comments
+      - view-definitions
+
+  findingCategories:
+
+    parser-defect:
+      description: >
+        The parser incorrectly interpreted valid PostgreSQL DDL.
+      blocksApproval: true
+
+    incomplete-extraction:
+      description: >
+        Physical schema information present in the source was not
+        represented in extracted knowledge.
+      blocksApproval: true
+
+    broken-reference:
+      description: >
+        Extracted metadata references a schema object that does not
+        exist in the extracted physical model.
+      blocksApproval: true
+
+    unresolved-view-lineage:
+      description: >
+        View lineage required for downstream semantic mapping could
+        not be extracted.
+      blocksApproval: true
+
+    unknown-computed-type:
+      description: >
+        A computed view column type could not be determined safely
+        from static DDL analysis.
+      blocksApproval: false
+      resolutionStatus: accepted-parser-limitation
+      runtimePolicy: type-must-be-resolved-before-typed-runtime-use
+
+    declared-schema-anomaly:
+      description: >
+        An unusual or apparently inconsistent value exists in the
+        supplied schema itself.
+      blocksApproval: false
+      resolutionStatus: accepted-physical-fact
+      runtimePolicy: retain-exactly-as-declared
+
+    documentation-quality-issue:
+      description: >
+        A database COMMENT is missing, vague, inconsistent or otherwise
+        unsuitable as authoritative semantic evidence.
+      blocksApproval: false
+      resolutionStatus: accepted-documentation-limitation
+      runtimePolicy: do-not-use-as-sole-semantic-evidence
+
+    restricted-runtime-object:
+      description: >
+        The object exists physically but should not be exposed to
+        model-generated runtime queries.
+      blocksApproval: false
+      resolutionStatus: runtime-restricted
+      runtimePolicy: exclude-from-runtime
+
+    semantic-mapping-candidate:
+      description: >
+        Physical metadata appears relevant to domain knowledge but
+        semantic interpretation belongs in the mapping stage.
+      blocksApproval: false
+      resolutionStatus: deferred-to-semantic-mapping
+      targetStage: semantic-mapping
+
+    repository-improvement:
+      description: >
+        Tooling should be improved before platform release but the
+        extracted physical metadata remains valid.
+      blocksApproval: false
+      resolutionStatus: deferred-repository-improvement
+      targetStage: before-platform-release
+
+  restrictedObjects:
+
+    defaultRestrictedTypes:
+      - function
+
+    reviewCategories:
+      - administration
+      - migration
+      - security
+      - entitlement
+      - audit
+      - maintenance
+      - system-support
+
+    runtimeDefault: deny
+
+    promotionAllowed: true
+
+  viewLineage:
+
+    required: true
+
+    require:
+      - source-object
+      - source-column-when-resolvable
+      - expression-type
+      - union-source-operands
+
+    computedColumns:
+      allowUnknownType: true
+      requireExplicitUnknown: true
+      prohibitGuessing: true
+
+  validation:
+
+    require:
+      - valid-jsonl
+      - unique-stable-ids
+      - source-references
+      - referential-integrity
+      - inventory-consistency
+      - zero-parse-errors
+      - physical-name-preservation
+
+    minimumParserTests:
+      required: true
+
+  mutationRules:
+
+    allowed:
+      - correct-parser-defect
+      - correct-incomplete-extraction
+      - update-review-metadata
+      - update-resolution-status
+      - update-blocking-flag
+      - update-runtime-policy
+
+    prohibited:
+      - modify-source-schema
+      - assign-domain-meaning
+      - verify-domain-mapping
+      - rename-physical-object
+      - infer-unknown-type
+      - write-approved-knowledge
+      - create-release
+
+  recommendationRules:
+
+    ACCEPT:
+      conditions:
+        - no-blocking-findings
+        - no-nonblocking-comments
+
+    ACCEPT_WITH_COMMENTS:
+      conditions:
+        - no-blocking-findings
+        - one-or-more-nonblocking-comments
+
+    REJECT:
+      conditions:
+        - one-or-more-blocking-findings
+
+  completion:
+    stopBeforeHumanApproval: true
+    humanApprovalRequired: true

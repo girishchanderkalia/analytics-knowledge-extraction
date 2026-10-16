@@ -153,6 +153,7 @@ spec:
         policy: review/config/domain-review-policy.yaml
         draftPath: knowledge/draft/domain
         pendingPath: review/pending
+        approvedPath: knowledge/approved/domain
 
         inputs:
           review: domain-review.md
@@ -180,10 +181,28 @@ spec:
         policy: review/config/schema-mapping-review-policy.yaml
         draftPath: knowledge/draft/mappings
         pendingPath: review/pending
+        approvedPath: knowledge/approved/mappings
 
         approval:
           required: true
           approvalFile: review/approved/schema-mapping-approval.yaml
+      
+      physicalSchema:
+        policy: review/config/schema-extraction-review-policy.yaml
+        draftPath: knowledge/draft/schema
+        approvedPath: knowledge/approved/schema
+
+      inputs:
+        review: schema-extraction-review.md
+        findings: schema-extraction-findings.md
+        changeSet: schema-extraction-change-set.yaml
+
+      outputs:
+        resolutionReport: schema-extraction-resolution-report.md
+
+      approval:
+        required: true
+        approvalFile: review/approved/schema-extraction-approval.yaml
 
   release:
     immutable: true
