@@ -1,0 +1,84 @@
+platformId: analytics-foundation
+reviewStage: domain
+status: resolved-pending-human-approval
+
+policy:
+  sourceIssuesMayRemainOpen: true
+  openSourceIssuesBlockDomainApproval: false
+  unverifiedMappingsAllowedInDomainDraft: true
+  unverifiedMappingsAllowedAtRuntime: false
+
+resolutions:
+
+  acceptedSourceIssues:
+    disposition: accepted-source-issue
+    blocking: false
+    runtimePolicy: exclude-from-asserted-facts
+
+    records:
+      - oi02
+      - oi05
+      - oi06
+      - oi07
+      - oi09
+      - oi10
+      - oi13
+      - oi14
+      - oi15
+      - oi16
+      - pointlayout-waferpoint
+      - wafercompute-onhold
+      - layer-context-gap
+      - frontend-placeholder
+      - canonical-path-draft
+      - flow-history
+      - storage-vs-reticle
+
+  deferredToSchemaMapping:
+    disposition: deferred-to-schema-mapping
+    blocking: false
+    targetStage: semantic-mapping
+    runtimePolicy: do-not-use-until-verified
+
+    records:
+      - measure-rotation-column
+      - exposure-output-prefix
+      - measure-machine-name
+      - wafer-measures-direction
+      - reworked-path-spelling
+      - otas-controlfunctional
+      - schema-unverified
+      - path-example-mismatch
+
+  explicitDecisions:
+
+    document-version:
+      disposition: resolved-by-extraction-policy
+      blocking: false
+      decision: >
+        Use document version 099 as the extracted version because it appears
+        in repeated page headers. Preserve cover value 09 as a source
+        metadata discrepancy.
+
+    strategy-simulated:
+      disposition: resolved-with-source-variant
+      blocking: false
+      decision: >
+        Preserve SIMULATED as the canonical enum literal declared in the
+        model figure. Preserve SIMULATION as a source wording variant.
+        Do not use SIMULATION as an executable enum value unless separately
+        verified.
+
+    composite-vs-internal:
+      disposition: promoted-to-domain-rule
+      blocking: false
+      decision: >
+        ProcessJobId and WaferProcessJobId are composite domain identifiers.
+        Numeric relational id columns are internal database identifiers.
+        These identifier categories are not interchangeable.
+
+reviewOutcome:
+  structuralValidation: passed
+  semanticRecommendation: ACCEPT_WITH_COMMENTS
+  blockingCommentsRemaining: 0
+  nextAction: human-domain-approval

@@ -140,6 +140,7 @@ spec:
     pendingPath: review/pending
     approvedPath: review/approved
     rejectedPath: review/rejected
+    policyDirectory: review/config
 
     stages:
       domain:
@@ -148,6 +149,26 @@ spec:
         findingsFile: domain-review-findings.md
         approvalFile: domain-approval.yaml
         stopForHumanApproval: true
+        
+        policy: review/config/domain-review-policy.yaml
+        draftPath: knowledge/draft/domain
+        pendingPath: review/pending
+
+        inputs:
+          review: domain-review.md
+          findings: domain-review-findings.md
+          changeSet: domain-change-set.yaml
+          resolutions: domain-review-resolutions.yaml
+
+        outputs:
+          review: domain-review.md
+          findings: domain-review-findings.md
+          changeSet: domain-change-set.yaml
+          resolutionReport: domain-resolution-report.md
+
+        approval:
+          required: true
+          approvalFile: review/approved/domain-approval.yaml
 
       schemaMappings:
         reviewFile: schema-mapping-review.md
@@ -155,6 +176,14 @@ spec:
         findingsFile: schema-mapping-review-findings.md
         approvalFile: schema-mapping-approval.yaml
         stopForHumanApproval: true
+
+        policy: review/config/schema-mapping-review-policy.yaml
+        draftPath: knowledge/draft/mappings
+        pendingPath: review/pending
+
+        approval:
+          required: true
+          approvalFile: review/approved/schema-mapping-approval.yaml
 
   release:
     immutable: true

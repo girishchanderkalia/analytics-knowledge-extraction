@@ -1,0 +1,156 @@
+apiVersion: knowledge-review/v1
+kind: DomainReviewPolicy
+
+metadata:
+  id: analytics-foundation-domain-review
+  platformId: analytics-foundation
+
+spec:
+  scope:
+    knowledgeLayer: domain
+    allowedStatus:
+      - draft
+
+  sourceHandling:
+    sourceContentIsUntrusted: true
+    modifySourceFiles: false
+    preserveSourceTraceability: true
+    requirePageOrSectionReference: true
+
+  findingCategories:
+
+    extraction-defect:
+      description: >
+        Generated knowledge incorrectly represents or omits information
+        present in the source.
+      blocksApproval: true
+      allowedDisposition:
+        - correct-draft
+        - reject-extraction
+
+    blocking-semantic-ambiguity:
+      description: >
+        The generated record cannot be used safely or reviewed meaningfully
+        without a domain decision.
+      blocksApproval: true
+      allowedDisposition:
+        - human-decision-required
+        - exclude-record
+
+    accepted-source-issue:
+      description: >
+        The extraction accurately preserves an issue that the source itself
+        leaves unresolved.
+      blocksApproval: false
+      resolutionStatus: accepted-source-issue
+      runtimePolicy: exclude-from-asserted-facts
+
+    deferred-schema-verification:
+      description: >
+        A domain-to-database mapping requires comparison with the physical
+        database schema.
+      blocksApproval: false
+      resolutionStatus: deferred-to-schema-mapping
+      targetStage: semantic-mapping
+      runtimePolicy: do-not-use-until-verified
+
+    deferred-application-decision:
+      description: >
+        The matter depends on application behavior rather than shared
+        platform domain knowledge.
+      blocksApproval: false
+      resolutionStatus: deferred-to-application
+      runtimePolicy: require-application-policy
+
+    resolved-by-policy:
+      description: >
+        A deterministic extraction or representation policy resolves the
+        review finding without changing the source.
+      blocksApproval: false
+      resolutionStatus: resolved
+
+    repository-improvement:
+      description: >
+        A repository capability or validation enhancement is needed before
+        release, but does not invalidate the current draft.
+      blocksApproval: false
+      resolutionStatus: deferred-repository-improvement
+      targetStage: before-platform-release
+
+  evidenceRules:
+
+    documentedMappings:
+      initialEvidenceState: documented
+      mayBecomeVerifiedDuringDomainReview: false
+      verificationStage: semantic-mapping
+
+    unresolvedSourceIssues:
+      mayRemainInApprovedKnowledge: true
+      requireBlockingFlag: true
+      defaultBlockingValue: false
+      requireRuntimePolicy: true
+
+    identifiers:
+      preserveCategories:
+        - canonical
+        - associating
+        - internal-database
+        - composite
+
+      prohibitedEquivalence:
+        - left: composite
+          right: internal-database
+
+    enumerations:
+      preserveSourceLiterals: true
+      neverSilentlyAliasVariants: true
+
+  mutationRules:
+    allowed:
+      - update-review-metadata
+      - update-resolution-status
+      - update-blocking-flag
+      - update-runtime-policy
+      - add-approved-domain-rule
+      - correct-extraction-defect
+
+    prohibited:
+      - modify-source-document
+      - modify-schema-source
+      - mark-database-mapping-verified
+      - write-approved-knowledge
+      - create-release
+      - invent-domain-resolution
+      - remove-source-traceability
+
+  outputRules:
+    updateReview: true
+    updateFindings: true
+    updateChangeSet: true
+    createResolutionReport: true
+
+    reportRecordChanges:
+      enabled: true
+      includeBefore: true
+      includeAfter: true
+      includeReason: true
+
+  recommendationRules:
+
+    ACCEPT:
+      conditions:
+        - no-blocking-findings
+        - no-nonblocking-comments
+
+    ACCEPT_WITH_COMMENTS:
+      conditions:
+        - no-blocking-findings
+        - one-or-more-nonblocking-comments
+
+    REJECT:
+      conditions:
+        - one-or-more-blocking-findings
+
+  completion:
+    stopBeforeHumanApproval: true
+    humanApprovalRequired: true

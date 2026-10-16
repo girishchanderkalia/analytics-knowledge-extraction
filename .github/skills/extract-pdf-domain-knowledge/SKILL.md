@@ -53,3 +53,16 @@ Do not execute or connect to external systems.
 
 Write the configured domain output files and configured review package.
 Do not write approved knowledge or create a release.
+
+## Review disposition
+
+An issue explicitly unresolved by the source is not an extraction failure.
+
+Record:
+
+- the unresolved statement;
+- its source;
+- its effect on runtime usage;
+- whether it blocks the current knowledge stage.
+
+Do not ask the model to solve source-authoring issues.
