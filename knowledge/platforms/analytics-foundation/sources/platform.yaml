@@ -1,0 +1,33 @@
+id: analytics-foundation
+name: Analytics Foundation
+
+sources:
+
+  domain:
+    - id: lana-context-model
+      path: sources/domain/Lana-ContextModel.pdf
+      type: pdf
+      authority: domain-model
+
+  schema:
+    - id: lanadb-schema
+      path: sources/schema/lanadb-schema.sql
+      type: postgresql-schema
+      authority: deployed-schema
+
+database:
+  system: postgresql
+  datasource: lanadb
+
+  allowedSchemas:
+    - lisa
+
+knowledge:
+  draft: knowledge/draft
+  approved: knowledge/approved
+  releases: knowledge/releases
+
+review:
+  pending: review/pending
+  approved: review/approved
+  rejected: review/rejected
