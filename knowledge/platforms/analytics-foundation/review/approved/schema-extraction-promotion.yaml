@@ -1,0 +1,180 @@
+apiVersion: knowledge-review/v1
+kind: PhysicalSchemaKnowledgePromotion
+metadata:
+  platformId: analytics-foundation
+  stage: physicalSchema
+spec:
+  status: promoted
+  approvalRef:
+    approvalId: analytics-foundation-physical-schema-initial
+    path: review/approved/schema-extraction-approval.yaml
+    sha256: b39326d3bbcf7bc4db18b19e0e658e15708ddc68378221029365c4943807a20c
+  approvedBy: gkalia
+  approvedOn: 2026-10-16
+  source:
+    id: lanadb-schema
+    path: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+  reviewPolicy:
+    path: review/config/schema-extraction-review-policy.yaml
+    sha256: 76d196c1db1180bdd94ef49f4789cbe71302e1f53ee0aa7b0b6ecb6e700c6610
+  reviewedInputs:
+  - path: review/pending/schema-extraction-review.md
+    sha256: 2cc325bb0604483c744b22cd488514ba354f1e33a6a6ca444fdf24c362e3caa2
+  - path: review/pending/schema-extraction-findings.md
+    sha256: e0a46c7caa391b9fa554999e55e411cc9f304345989d229f58a2b2dc7455da7c
+  - path: review/pending/schema-extraction-change-set.yaml
+    sha256: 50cd6786262f6abd8d613f068dd68b0d35c13f02d434b0bb573581a238031caa
+  - path: review/pending/schema-extraction-resolution-report.md
+    sha256: a2e382eb758f9e6a99cebdc564d790ab6b3bf1e2a15a170198c0c175899f4bae
+  records: 31341
+  outputs:
+    schemas:
+      draftPath: knowledge/draft/schema/schemas.jsonl
+      draftSha256: 63ae8e0e32d978c1de72451fc2100eea7ecb492aecc27edb4303c9c57b1f0a16
+      records: 1
+      approvedPath: knowledge/approved/schema/schemas.jsonl
+      approvedSha256: 90db8b57721351ad954d2eaa524807c01c527a028c67ee793ba980a88f190ad4
+    tables:
+      draftPath: knowledge/draft/schema/tables.jsonl
+      draftSha256: 12616a81fa9b178bb49daaa1f91d3cba640e73848f2c3210224ead36aa0eb812
+      records: 308
+      approvedPath: knowledge/approved/schema/tables.jsonl
+      approvedSha256: 717a425841eda0063ea2a13af437de606bf2ea887d95f46baa91d0cd29b3e5d4
+    views:
+      draftPath: knowledge/draft/schema/views.jsonl
+      draftSha256: d38cf599e7c6126fb77c2cac38a3e21b5943a2a26833a1fe5df5e571c3d1876a
+      records: 13
+      approvedPath: knowledge/approved/schema/views.jsonl
+      approvedSha256: d354e1884bfabffbed50868e428cdb771f64b3f4248ed5a97e945b4d0cf5ffbd
+    columns:
+      draftPath: knowledge/draft/schema/columns.jsonl
+      draftSha256: 101467751df2183ecaf0793c9e6d4a7f5a9deaac5dd284e0f4c7878f25fe76a6
+      records: 14981
+      approvedPath: knowledge/approved/schema/columns.jsonl
+      approvedSha256: 47a2e98ebfa542a8b75a2e8c135e0500b7e4016b6b8f7f972b8f56ee30fb1442
+    primaryKeys:
+      draftPath: knowledge/draft/schema/primary-keys.jsonl
+      draftSha256: 01440733f3245b2aec53ddd0d061fe6da3adf3fe15165918cfd5a1865bf17eab
+      records: 106
+      approvedPath: knowledge/approved/schema/primary-keys.jsonl
+      approvedSha256: 77fbc33e3a59643ac078933b3c69d3b4328067d7b9875ef24ea52c67135fcddf
+    foreignKeys:
+      draftPath: knowledge/draft/schema/foreign-keys.jsonl
+      draftSha256: 512f2b511727dc24fb7c7d08577e4e2b9986a2e1984fe6d02809a7996ad2cb04
+      records: 415
+      approvedPath: knowledge/approved/schema/foreign-keys.jsonl
+      approvedSha256: 4d27d4ccdbec4248ce3af446a887ad90539efbc1426b82370b90e2ff068204ad
+    indexes:
+      draftPath: knowledge/draft/schema/indexes.jsonl
+      draftSha256: 5614326785d893ccd3c4cdb9076fcc87e4fae11a591de74ed81be94229383083
+      records: 456
+      approvedPath: knowledge/approved/schema/indexes.jsonl
+      approvedSha256: 629b829f20c134b82a9db57c2e2687055740168ecec6207915a86142962a7f29
+    comments:
+      draftPath: knowledge/draft/schema/comments.jsonl
+      draftSha256: 22e00918e84eaf87ab4a482f4605eff5a057a49b957f592e16f90b59ea6be500
+      records: 14680
+      approvedPath: knowledge/approved/schema/comments.jsonl
+      approvedSha256: e60fb7c8048f5f372e0842af60a1cd862d1ab50e37031f9ae50a9a9cf8822cbf
+    functions:
+      draftPath: knowledge/draft/schema/functions.jsonl
+      draftSha256: 839fbadc1fb8d0670b85ab960cd4c1ccf664caf306c95524aa69a64e36bd5221
+      records: 8
+      approvedPath: knowledge/approved/schema/functions.jsonl
+      approvedSha256: f4e9f7c77e65eb50134efb3dd1e6ffd28153515ee3de704b8cc7333990f8ac49
+    sequences:
+      draftPath: knowledge/draft/schema/sequences.jsonl
+      draftSha256: bfe43468c31f973b70f4cae846b6d0c976b3996f34282ba633b95f7d87eedac7
+      records: 117
+      approvedPath: knowledge/approved/schema/sequences.jsonl
+      approvedSha256: 33b4062b88bf9a576adb2bd987fdb8c6987d529f6c9538f20b1056bd9fbf1ef7
+    viewLineage:
+      draftPath: knowledge/draft/schema/view-lineage.jsonl
+      draftSha256: 74fdb5acf34d84c77f6288c90c024dfe1db865a590d7b52be77bb38726bd58be
+      records: 108
+      approvedPath: knowledge/approved/schema/view-lineage.jsonl
+      approvedSha256: 0c7e6917a135ec944c35747a337d578ad31662438c0f515cdd55c6ba02ae4f97
+    restrictedObjects:
+      draftPath: knowledge/draft/schema/restricted-objects.jsonl
+      draftSha256: 1859d5d6f900ecc9a43f4f0d8c685a7aea4e5f0588c5fc4b2e0ee1337bf057d9
+      records: 148
+      approvedPath: knowledge/approved/schema/restricted-objects.jsonl
+      approvedSha256: 8af554344df24de27fdd4c683ef841c4693cbdb31525fbeb714fc6680f5f2912
+    parseErrors:
+      draftPath: knowledge/draft/schema/parse-errors.jsonl
+      draftSha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+      records: 0
+      approvedPath: knowledge/approved/schema/parse-errors.jsonl
+      approvedSha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  mutation: Copied reviewed drafts; only status=approved and approvalRef added. IDs,
+    facts, sourceRefs and runtime restrictions preserved.
+  draftsRetained: true
+  conditions:
+  - id: unknown-computed-types
+    description: 'Retain explicitly unknown types for exposure_process_job.rework_context,
+      lis_job.application_id and lis_job.request_type. Resolve the actual types before
+      typed runtime use; do not guess them. These are three accepted parser limitations,
+      not resolved type determinations.
+
+      '
+  - id: restricted-runtime-objects
+    description: 'Retain all 148 restricted objects as physical knowledge while excluding
+      them from runtime access. Preserve function, sequence and administrative object
+      restrictions and runtimeAuthorized=false on every record.
+
+      '
+  - id: release-validation
+    description: 'Repository-level record schemas and deterministic knowledge validation
+      remain required before the first immutable platform release. Local structural
+      checks do not certify runtime readiness.
+
+      '
+  - id: physical-stage-configuration
+    description: 'Correct the misplaced physicalSchema input/output/approval configuration
+      before relying on stage-specific approval or promotion automation. This approval
+      uses the explicitly configured schema-extraction filenames and does not silently
+      repair or waive the configuration issue.
+
+      '
+  - id: physical-only-approval
+    description: 'Approval covers only the checksum-bound physical-schema snapshot.
+      It does not verify documented domain mappings or authorize business meaning,
+      query capabilities, SQL execution or runtime exposure. Changes to the approved
+      snapshot require a new review and approval.
+
+      '
+  runtimeAuthorization:
+    physicalSchema: false
+    restrictedObjects: false
+    semanticMappings: false
+    reason: 'Human physical-schema approval permits a separate promotion into the
+      approved schema layer, subject to the retained conditions. It does not itself
+      promote records or authorize runtime use. Runtime authorization requires the
+      applicable subsequent approvals and an immutable release.
+
+      '
+  releaseCreated: false
+  configurationHandling: One-off snapshot-bound promotion using explicit human approval
+    and matching draft/approved schema paths. Does not rely on malformed stage input/output/approval
+    discovery. Configuration repair remains required before stage automation.
+  validation:
+    result: passed
+    checks:
+    - human approval scope and evidence hashes
+    - all 13 reviewed draft hashes
+    - source and policy hashes
+    - 31341 unique stable IDs
+    - references and source line bounds
+    - 148 restricted objects
+    - three unknown computed types retained
+    - corrected dynamic SQL metadata retained
+    - persisted approved/draft parity
+    - all existing files including approval and drafts unchanged
+    limitations:
+    - Repository-wide JSON Schemas and executable validation remain required before
+      release.
+    - Physical approval does not verify semantic mappings or authorize runtime use.
+  nextStage:
+    id: semantic-mapping
+    requiresSeparateRequest: true

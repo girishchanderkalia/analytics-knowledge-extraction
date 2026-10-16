@@ -1,0 +1,110 @@
+apiVersion: knowledge-review/v1
+kind: HumanApproval
+
+metadata:
+  platformId: analytics-foundation
+  stage: physicalSchema
+  approvalId: analytics-foundation-physical-schema-initial
+
+spec:
+  decision: approved-with-comments
+  approvedBy: gkalia
+  approvedOn: 2026-10-16
+  approvalEvidence:
+    type: explicit-user-instruction
+    instruction: Record my approval with comments for the pending physical-schema review for platform analytics-foundation
+    recordedAt: '2026-10-16T13:59:13.683+02:00'
+    approverIdentityBasis: Existing human approval identity in review/approved/domain-approval.yaml.
+
+  reviewedInputs:
+    - review/pending/schema-extraction-review.md
+    - review/pending/schema-extraction-findings.md
+    - review/pending/schema-extraction-change-set.yaml
+    - review/pending/schema-extraction-resolution-report.md
+
+  reviewedInputChecksums:
+    - path: review/pending/schema-extraction-review.md
+      sha256: 2cc325bb0604483c744b22cd488514ba354f1e33a6a6ca444fdf24c362e3caa2
+    - path: review/pending/schema-extraction-findings.md
+      sha256: e0a46c7caa391b9fa554999e55e411cc9f304345989d229f58a2b2dc7455da7c
+    - path: review/pending/schema-extraction-change-set.yaml
+      sha256: 50cd6786262f6abd8d613f068dd68b0d35c13f02d434b0bb573581a238031caa
+    - path: review/pending/schema-extraction-resolution-report.md
+      sha256: a2e382eb758f9e6a99cebdc564d790ab6b3bf1e2a15a170198c0c175899f4bae
+
+  reviewPolicy:
+    path: review/config/schema-extraction-review-policy.yaml
+    sha256: 76d196c1db1180bdd94ef49f4789cbe71302e1f53ee0aa7b0b6ecb6e700c6610
+
+  source:
+    id: lanadb-schema
+    path: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+
+  approvedKnowledge:
+    path: knowledge/draft/schema
+    records: 31341
+    files: 13
+    snapshot:
+      changeSetPath: review/pending/schema-extraction-change-set.yaml
+      changeSetSha256: 50cd6786262f6abd8d613f068dd68b0d35c13f02d434b0bb573581a238031caa
+      outputChecksumsField: reviewedOutputs
+    scope: Physical metadata only; excludes domain meaning, semantic mappings, query capabilities and runtime authorization.
+
+  reviewOutcome:
+    recommendation: ACCEPT_WITH_COMMENTS
+    blockingFindings: 0
+    resolvedBlockingFindings: 3
+    nonblockingFindings: 6
+
+  conditions:
+    - id: unknown-computed-types
+      description: >
+        Retain explicitly unknown types for exposure_process_job.rework_context,
+        lis_job.application_id and lis_job.request_type. Resolve the actual types
+        before typed runtime use; do not guess them. These are three accepted
+        parser limitations, not resolved type determinations.
+    - id: restricted-runtime-objects
+      description: >
+        Retain all 148 restricted objects as physical knowledge while excluding
+        them from runtime access. Preserve function, sequence and administrative
+        object restrictions and runtimeAuthorized=false on every record.
+    - id: release-validation
+      description: >
+        Repository-level record schemas and deterministic knowledge validation
+        remain required before the first immutable platform release. Local
+        structural checks do not certify runtime readiness.
+    - id: physical-stage-configuration
+      description: >
+        Correct the misplaced physicalSchema input/output/approval configuration
+        before relying on stage-specific approval or promotion automation. This
+        approval uses the explicitly configured schema-extraction filenames and
+        does not silently repair or waive the configuration issue.
+    - id: physical-only-approval
+      description: >
+        Approval covers only the checksum-bound physical-schema snapshot. It
+        does not verify documented domain mappings or authorize business meaning,
+        query capabilities, SQL execution or runtime exposure. Changes to the
+        approved snapshot require a new review and approval.
+
+  runtimeAuthorization:
+    physicalSchema: false
+    restrictedObjects: false
+    semanticMappings: false
+    reason: >
+      Human physical-schema approval permits a separate promotion into the
+      approved schema layer, subject to the retained conditions. It does not
+      itself promote records or authorize runtime use. Runtime authorization
+      requires the applicable subsequent approvals and an immutable release.
+
+  nextStage:
+    id: physical-schema-promotion
+    targetPath: knowledge/approved/schema
+    requiresSeparateExecution: true
+
+  comments:
+    - Physical schema accepted with the six nonblocking findings retained.
+    - All three dynamic-SQL classification defects are corrected and revalidated.
+    - This file records the user's explicit approval; it is not an agent-generated approval decision.
+    - Reviewed pending artifacts remain unchanged as the checksum-bound evidence snapshot.
+    - No knowledge records are promoted and no runtime release is created by this approval record.

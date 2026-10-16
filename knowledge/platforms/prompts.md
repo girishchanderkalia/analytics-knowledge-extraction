@@ -10,7 +10,9 @@ Promote the approved domain knowledge for platform analytics-foundation
 Run Physical schema extraction for platform analytics-foundation
 ## Physical schema review
 Review the physical schema extraction for platform analytics-foundation
-## approval of Physical schema
+## Approving physical schema review
+Record my approval with comments for the pending physical-schema review for platform analytics-foundation
+## Promotion of Physical schema
 Promote the approved physical schema for platform analytics-foundation
 ### Semantics mappings
 Build semantic mappings for platform analytics-foundation
