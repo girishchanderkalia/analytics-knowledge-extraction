@@ -1,0 +1,501 @@
+platformId: analytics-foundation
+stage: physicalSchema
+reviewType: physical-schema-extraction
+status: reviewed-awaiting-human-approval
+configurationPath: platform.yaml
+configurationDiscovery:
+  policy: review/config/schema-extraction-review-policy.yaml
+  draftPath: knowledge/draft/schema
+  reviewArtifactNamesFrom: spec.review.stages.inputs
+  limitation: inputs/outputs/approval are misplaced siblings rather than physicalSchema
+    fields; no configuration mutation performed.
+source:
+  id: lanadb-schema
+  path: sources/schema/lanadb-schema.sql
+  sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+reviewPolicy:
+  path: review/config/schema-extraction-review-policy.yaml
+  sha256: 76d196c1db1180bdd94ef49f4789cbe71302e1f53ee0aa7b0b6ecb6e700c6610
+extractionChangeSet: review/pending/schema-mapping-change-set.yaml
+reviewedOutputs:
+  schemas:
+    path: knowledge/draft/schema/schemas.jsonl
+    sha256: 63ae8e0e32d978c1de72451fc2100eea7ecb492aecc27edb4303c9c57b1f0a16
+    records: 1
+  tables:
+    path: knowledge/draft/schema/tables.jsonl
+    sha256: 12616a81fa9b178bb49daaa1f91d3cba640e73848f2c3210224ead36aa0eb812
+    records: 308
+  views:
+    path: knowledge/draft/schema/views.jsonl
+    sha256: d38cf599e7c6126fb77c2cac38a3e21b5943a2a26833a1fe5df5e571c3d1876a
+    records: 13
+  columns:
+    path: knowledge/draft/schema/columns.jsonl
+    sha256: 101467751df2183ecaf0793c9e6d4a7f5a9deaac5dd284e0f4c7878f25fe76a6
+    records: 14981
+  primaryKeys:
+    path: knowledge/draft/schema/primary-keys.jsonl
+    sha256: 01440733f3245b2aec53ddd0d061fe6da3adf3fe15165918cfd5a1865bf17eab
+    records: 106
+  foreignKeys:
+    path: knowledge/draft/schema/foreign-keys.jsonl
+    sha256: 512f2b511727dc24fb7c7d08577e4e2b9986a2e1984fe6d02809a7996ad2cb04
+    records: 415
+  indexes:
+    path: knowledge/draft/schema/indexes.jsonl
+    sha256: 5614326785d893ccd3c4cdb9076fcc87e4fae11a591de74ed81be94229383083
+    records: 456
+  comments:
+    path: knowledge/draft/schema/comments.jsonl
+    sha256: 22e00918e84eaf87ab4a482f4605eff5a057a49b957f592e16f90b59ea6be500
+    records: 14680
+  functions:
+    path: knowledge/draft/schema/functions.jsonl
+    sha256: 839fbadc1fb8d0670b85ab960cd4c1ccf664caf306c95524aa69a64e36bd5221
+    records: 8
+  sequences:
+    path: knowledge/draft/schema/sequences.jsonl
+    sha256: bfe43468c31f973b70f4cae846b6d0c976b3996f34282ba633b95f7d87eedac7
+    records: 117
+  viewLineage:
+    path: knowledge/draft/schema/view-lineage.jsonl
+    sha256: 74fdb5acf34d84c77f6288c90c024dfe1db865a590d7b52be77bb38726bd58be
+    records: 108
+  restrictedObjects:
+    path: knowledge/draft/schema/restricted-objects.jsonl
+    sha256: 1859d5d6f900ecc9a43f4f0d8c685a7aea4e5f0588c5fc4b2e0ee1337bf057d9
+    records: 148
+  parseErrors:
+    path: knowledge/draft/schema/parse-errors.jsonl
+    sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    records: 0
+recordCount: 31341
+changes:
+  recordsAdded: 0
+  recordsUpdated: 3
+  recordsRemoved: 0
+  fieldsChanged:
+  - hasDynamicSql
+reviewOutcome:
+  recommendation: ACCEPT_WITH_COMMENTS
+  blockingFindings: 0
+  resolvedBlockingFindings: 3
+  nonblockingFindings: 6
+  reason: All three parser defects corrected and full source-to-record validation
+    passed.
+  nextAction: human-physical-schema-approval-with-comments
+validation:
+  structural: passed
+  sourceFidelity: passed
+  audits:
+    record-reference-checks: 31341
+    procedural-dynamic-SQL-classifications: 8
+    exact-function-bodies: 8
+    table-columns: 14892
+    table-names: 308
+    exact-comments: 14680
+    identity-sequences: 15
+    view-query-AST-equivalence: 13
+    sequence-options: 102
+    sequence-ownership: 4
+    alter-defaults: 4
+    unique-constraints: 24
+    primary-keys: 106
+    index-definition-AST-equivalence: 456
+    trigger-definition-AST-equivalence: 4
+    foreign-keys: 415
+  sourceStatements: 16197
+  viewProjections: 89
+  minimumParserTests:
+    passed: 7
+    classificationSubcases: 13
+  regressionEvidence:
+    beforeFix: seven-false-positive-cases-and-invalid-body-test-failed
+    afterFix: all-thirteen-classification-cases-and-invalid-body-test-passed
+    fullRegeneration: all-31341-records-match-corrected-extractor
+    unchangedRecordFields: all-fields-except-three-hasDynamicSql-values
+  limitations:
+  - No repository-level schemas or executable validator supplied.
+  - Static DDL does not safely resolve three computed result types.
+  - PL/pgSQL parsed offline for dynamic-SQL classification; bodies not compiled or
+    executed.
+findings:
+- id: analytics-foundation:physical-schema-review:dynamic-sql-false-positive-check_repack_privileges
+  category: parser-defect
+  blocking: false
+  summary: '"lisa"."check_repack_privileges" is incorrectly classified as containing
+    dynamic SQL.'
+  affectedRecordIds:
+  - analytics-foundation:schema:functions:%22lisa%22.%22check_repack_privileges%22%28%29
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 33
+    lineEnd: 90
+    statementType: CreateFunctionStmt
+  details:
+    field: hasDynamicSql
+    actual: true
+    expected: false
+    sourceEvidence: EXECUTE occurs in a comment and privilege-description string literals,
+      not a procedural statement.
+    impact: Incorrect physical routine metadata; this is a parser classification defect,
+      not an exploitable vulnerability finding.
+    requiredCorrection: Classify procedural tokens rather than keyword occurrences
+      in comments or string literals; add a comment-only EXECUTE regression test.
+  resolutionStatus: resolved-parser-defect
+  resolution:
+    previousBlocking: true
+    field: hasDynamicSql
+    before: true
+    after: false
+    method: offline-pglast-PLpgSQL-procedural-tree
+    verification: regression-tests-and-full-source-re-review-passed
+    reportPath: review/pending/schema-extraction-resolution-report.md
+- id: analytics-foundation:physical-schema-review:dynamic-sql-false-positive-grant_repack_privileges
+  category: parser-defect
+  blocking: false
+  summary: '"lisa"."grant_repack_privileges" is incorrectly classified as containing
+    dynamic SQL.'
+  affectedRecordIds:
+  - analytics-foundation:schema:functions:%22lisa%22.%22grant_repack_privileges%22%28%29
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 219
+    lineEnd: 241
+    statementType: CreateFunctionStmt
+  details:
+    field: hasDynamicSql
+    actual: true
+    expected: false
+    sourceEvidence: EXECUTE is a privilege keyword in GRANT EXECUTE ON ALL FUNCTIONS,
+      not a procedural dynamic-SQL statement.
+    impact: Incorrect physical routine metadata; this is a parser classification defect,
+      not an exploitable vulnerability finding.
+    requiredCorrection: Classify procedural tokens rather than keyword occurrences
+      in comments or string literals; add a comment-only EXECUTE regression test.
+  resolutionStatus: resolved-parser-defect
+  resolution:
+    previousBlocking: true
+    field: hasDynamicSql
+    before: true
+    after: false
+    method: offline-pglast-PLpgSQL-procedural-tree
+    verification: regression-tests-and-full-source-re-review-passed
+    reportPath: review/pending/schema-extraction-resolution-report.md
+- id: analytics-foundation:physical-schema-review:dynamic-sql-false-positive-pg_repack_reinstall
+  category: parser-defect
+  blocking: false
+  summary: '"lisa"."pg_repack_reinstall" is incorrectly classified as containing dynamic
+    SQL.'
+  affectedRecordIds:
+  - analytics-foundation:schema:functions:%22lisa%22.%22pg_repack_reinstall%22%28%29
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 248
+    lineEnd: 303
+    statementType: CreateFunctionStmt
+  details:
+    field: hasDynamicSql
+    actual: true
+    expected: false
+    sourceEvidence: EXECUTE is a privilege keyword in GRANT EXECUTE ON ALL FUNCTIONS,
+      not a procedural dynamic-SQL statement.
+    impact: Incorrect physical routine metadata; this is a parser classification defect,
+      not an exploitable vulnerability finding.
+    requiredCorrection: Classify procedural tokens rather than keyword occurrences
+      in comments or string literals; add a comment-only EXECUTE regression test.
+  resolutionStatus: resolved-parser-defect
+  resolution:
+    previousBlocking: true
+    field: hasDynamicSql
+    before: true
+    after: false
+    method: offline-pglast-PLpgSQL-procedural-tree
+    verification: regression-tests-and-full-source-re-review-passed
+    reportPath: review/pending/schema-extraction-resolution-report.md
+- id: analytics-foundation:physical-schema-review:unknown-type-exposure_process_job-rework_context
+  category: unknown-computed-type
+  blocking: false
+  summary: Computed type is explicitly unknown for "lisa"."exposure_process_job"."rework_context".
+  affectedRecordIds:
+  - analytics-foundation:schema:columns:lisa:exposure_process_job:rework_context
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 2629
+    lineEnd: 2652
+    statementType: ViewStmt
+  details:
+    expressionSql: CASE WHEN CAST(CAST(reworked AS integer) AS boolean) IS FALSE THEN
+      CAST('NON_REWORKED' AS text) WHEN CAST(CAST(latest_reworked AS integer) AS boolean)
+      IS TRUE THEN CAST('LATEST_REWORKED' AS text) ELSE CAST(NULL AS text) END
+    typeResolution: not-resolved-without-server-type-analysis
+    requiredBeforeRuntime: Resolve the actual PostgreSQL expression result type before
+      typed runtime use; do not guess.
+  resolutionStatus: accepted-parser-limitation
+  runtimePolicy: type-must-be-resolved-before-typed-runtime-use
+- id: analytics-foundation:physical-schema-review:unknown-type-lis_job-application_id
+  category: unknown-computed-type
+  blocking: false
+  summary: Computed type is explicitly unknown for "lisa"."lis_job"."application_id".
+  affectedRecordIds:
+  - analytics-foundation:schema:columns:lisa:lis_job:application_id
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 62714
+    lineEnd: 62734
+    statementType: ViewStmt
+  details:
+    expressionSql: split_part(CAST(type AS text), CAST('/' AS text), 1)
+    typeResolution: not-resolved-without-server-type-analysis
+    requiredBeforeRuntime: Resolve the actual PostgreSQL expression result type before
+      typed runtime use; do not guess.
+  resolutionStatus: accepted-parser-limitation
+  runtimePolicy: type-must-be-resolved-before-typed-runtime-use
+- id: analytics-foundation:physical-schema-review:unknown-type-lis_job-request_type
+  category: unknown-computed-type
+  blocking: false
+  summary: Computed type is explicitly unknown for "lisa"."lis_job"."request_type".
+  affectedRecordIds:
+  - analytics-foundation:schema:columns:lisa:lis_job:request_type
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 62714
+    lineEnd: 62734
+    statementType: ViewStmt
+  details:
+    expressionSql: split_part(CAST(type AS text), CAST('/' AS text), 2)
+    typeResolution: not-resolved-without-server-type-analysis
+    requiredBeforeRuntime: Resolve the actual PostgreSQL expression result type before
+      typed runtime use; do not guess.
+  resolutionStatus: accepted-parser-limitation
+  runtimePolicy: type-must-be-resolved-before-typed-runtime-use
+- id: analytics-foundation:physical-schema-review:restricted-runtime-objects
+  category: restricted-runtime-object
+  blocking: false
+  summary: 148 physical objects are retained but excluded from runtime access.
+  affectedRecordIds:
+  - analytics-foundation:schema:functions:%22lisa%22.%22check_repack_privileges%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22check_repack_schema_exists%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22extract_job_moy%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22extract_lot_step_moy%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22get_data_directory_disk_usage%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22get_fragmentation_stat%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22grant_repack_privileges%22%28%29
+  - analytics-foundation:schema:functions:%22lisa%22.%22pg_repack_reinstall%22%28%29
+  - analytics-foundation:schema:tables:lisa:application_patch
+  - analytics-foundation:schema:tables:lisa:application_patch_switch
+  - analytics-foundation:schema:tables:lisa:config_parameter
+  - analytics-foundation:schema:tables:lisa:data_entitlement_group
+  - analytics-foundation:schema:tables:lisa:data_entitlement_user
+  - analytics-foundation:schema:tables:lisa:data_entitlement_user_group
+  - analytics-foundation:schema:tables:lisa:data_synchronizer_task
+  - analytics-foundation:schema:tables:lisa:databasechangelog
+  - analytics-foundation:schema:tables:lisa:databasechangeloglock
+  - analytics-foundation:schema:tables:lisa:document_audit_stacktrace
+  - analytics-foundation:schema:tables:lisa:document_audit_trail
+  - analytics-foundation:schema:tables:lisa:exposure_machine_table_clean
+  - analytics-foundation:schema:tables:lisa:job_audit_stacktrace
+  - analytics-foundation:schema:tables:lisa:job_audit_trail
+  - analytics-foundation:schema:tables:lisa:job_repair
+  - analytics-foundation:schema:tables:lisa:job_triggers
+  - analytics-foundation:schema:tables:lisa:lis_subscriptions
+  - analytics-foundation:schema:tables:lisa:ols_compartment_rule
+  - analytics-foundation:schema:tables:lisa:ols_default_security_level
+  - analytics-foundation:schema:tables:lisa:ols_group_rule
+  - analytics-foundation:schema:tables:lisa:ols_security_level_rule
+  - analytics-foundation:schema:sequences:lisa:sq_activity_hierarchy_id
+  - analytics-foundation:schema:sequences:lisa:sq_activity_image_id
+  - analytics-foundation:schema:sequences:lisa:sq_activity_task_id
+  - analytics-foundation:schema:sequences:lisa:sq_activity_wafer_id
+  - analytics-foundation:schema:sequences:lisa:sq_appli_patch_switch_id
+  - analytics-foundation:schema:sequences:lisa:sq_application_patch_id
+  - analytics-foundation:schema:sequences:lisa:sq_cd_elements_id
+  - analytics-foundation:schema:sequences:lisa:sq_cd_parameters_id
+  - analytics-foundation:schema:sequences:lisa:sq_config_parameter_id
+  - analytics-foundation:schema:sequences:lisa:sq_ctx_shadow_mode
+  - analytics-foundation:schema:sequences:lisa:sq_data_entitlement_group_id
+  - analytics-foundation:schema:sequences:lisa:sq_data_entitlement_user_id
+  - analytics-foundation:schema:sequences:lisa:sq_data_sync_task_id
+  - analytics-foundation:schema:sequences:lisa:sq_doc_audit_stacktrace_id
+  - analytics-foundation:schema:sequences:lisa:sq_doc_audit_trail_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_drlaser_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_dropletgen_table_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_dropsteer_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_encontrol_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_env_ctrl_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_laser_beam_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_plasma_gen_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_pure_collect_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_seedtable_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_tin_capture_id
+  - analytics-foundation:schema:sequences:lisa:sq_euv_tin_catch_id
+  - analytics-foundation:schema:sequences:lisa:sq_exp_machine_const_chang_id
+  - analytics-foundation:schema:sequences:lisa:sq_exp_machine_smash_laser_id
+  - analytics-foundation:schema:sequences:lisa:sq_exp_machine_table_clean_id
+  - analytics-foundation:schema:sequences:lisa:sq_fp_job_mapping_id
+  - analytics-foundation:schema:sequences:lisa:sq_fp_lkm_mapping_id
+  - analytics-foundation:schema:sequences:lisa:sq_fp_parameters_id
+  - analytics-foundation:schema:sequences:lisa:sq_ibpq_parameters_id
+  - analytics-foundation:schema:sequences:lisa:sq_icot_foup_id
+  - analytics-foundation:schema:sequences:lisa:sq_idat_readout_documents_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_all_almt_mon_kpis_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_audit_stacktrace_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_audit_trail_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_cdu_est_job_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_cdu_est_job_kpis_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_documents_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_lot_ariamon_ctx_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_lot_chk_ariamon_ctx_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_mtd_est_recipe_set_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_ovl_est_recipe_set_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_report_kpis_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_trg_lot_exp_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_trg_lot_metr_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_triggers_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_tsss_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_wafer_level_grouping_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_wfr_ariamon_ctx_id
+  - analytics-foundation:schema:sequences:lisa:sq_layer_trees_id
+  - analytics-foundation:schema:sequences:lisa:sq_layers_id
+  - analytics-foundation:schema:sequences:lisa:sq_lens_aberr_ctl_lot_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lens_aberr_imp_mon_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_ebeam_overlay_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_exposure_documents_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_exposure_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_idat_readout_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_kpi_mapping_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_metrology_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_lot_wms_readout_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_application_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_commercial_opt_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_config_item_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_configuration_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_event_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_event_log_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_part_info_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_productive_time_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_state_id
+  - analytics-foundation:schema:sequences:lisa:sq_machine_variant_param_id
+  - analytics-foundation:schema:sequences:lisa:sq_met_machine_hw_kpis_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_failure_reason_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_grating_set_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_grating_set_stats_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_optimization_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_output_report_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_pol_selection_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_profile_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_profile_statistics_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_target_id
+  - analytics-foundation:schema:sequences:lisa:sq_mro_wavelength_sel_range_id
+  - analytics-foundation:schema:sequences:lisa:sq_mtd_correction_kpis_id
+  - analytics-foundation:schema:sequences:lisa:sq_ols_compartment_rule_id
+  - analytics-foundation:schema:sequences:lisa:sq_ols_group_rule_id
+  - analytics-foundation:schema:sequences:lisa:sq_ols_security_level_rule_id
+  - analytics-foundation:schema:sequences:lisa:sq_process_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_reticle_inspection_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_ebeam_overlay_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_exposure_doc_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_exposure_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_kpi_mapping_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_metrology_docs_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_metrology_mtd_fps_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_metrology_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_wafer_step_id
+  - analytics-foundation:schema:sequences:lisa:sq_wfr_met_idm_prof_extadv_ctx
+  - analytics-foundation:schema:sequences:lisa:sq_wms_readout_documents_id
+  - analytics-foundation:schema:tables:lisa:sync_bookmarks
+  - analytics-foundation:schema:tables:lisa:unpublished_event
+  - analytics-foundation:schema:sequences:lisa:exposure_document_id_seq
+  - analytics-foundation:schema:sequences:lisa:measure_document_id_seq
+  - analytics-foundation:schema:sequences:lisa:sq_coarse_data_selection_id
+  - analytics-foundation:schema:sequences:lisa:sq_exposure_dataset_partition_id
+  - analytics-foundation:schema:sequences:lisa:sq_exposure_lot_data_record_id
+  - analytics-foundation:schema:sequences:lisa:sq_flow_exec_dsp_id
+  - analytics-foundation:schema:sequences:lisa:sq_flow_execution_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_data_record_id
+  - analytics-foundation:schema:sequences:lisa:sq_job_dataset_partition_id
+  - analytics-foundation:schema:sequences:lisa:sq_measure_dataset_partition_id
+  - analytics-foundation:schema:sequences:lisa:sq_measure_lot_data_record_id
+  - analytics-foundation:schema:sequences:lisa:sq_performance_domain_id
+  - analytics-foundation:schema:sequences:lisa:sq_processing_dr_id
+  - analytics-foundation:schema:sequences:lisa:sq_processing_dsp_id
+  - analytics-foundation:schema:sequences:lisa:sq_table_reference_id
+  sourceRefs: []
+  details:
+    counts:
+      functions: 8
+      tables: 23
+      sequences: 117
+    scope: Restrictions retain physical metadata and do not block approval; every
+      record also has runtimeAuthorized=false.
+  resolutionStatus: runtime-restricted
+  runtimePolicy: exclude-from-runtime
+- id: analytics-foundation:physical-schema-review:repository-validator
+  category: repository-improvement
+  blocking: false
+  summary: Repository-level record schemas and an executable knowledge validator are
+    absent.
+  affectedRecordIds: []
+  sourceRefs: []
+  details:
+    requiredBeforeRelease: Supply deterministic repository-level validation before
+      the first immutable platform release.
+  resolutionStatus: deferred-repository-improvement
+  targetStage: before-platform-release
+- id: analytics-foundation:physical-schema-review:physical-stage-configuration
+  category: repository-improvement
+  blocking: false
+  summary: Physical-schema input/output/approval settings are siblings of physicalSchema
+    rather than nested within it.
+  affectedRecordIds: []
+  sourceRefs: []
+  details:
+    configurationPath: platform.yaml
+    actualPaths:
+    - spec.review.stages.inputs
+    - spec.review.stages.outputs
+    - spec.review.stages.approval
+    expectedPaths:
+    - spec.review.stages.physicalSchema.inputs
+    - spec.review.stages.physicalSchema.outputs
+    - spec.review.stages.physicalSchema.approval
+    reviewPathHandling: The explicitly listed schema-extraction filenames are used
+      for this review only. No configuration was silently rewritten.
+    impact: Stage-specific automation cannot reliably discover its review or approval
+      fields; correct before approval/promotion automation.
+  resolutionStatus: deferred-repository-improvement
+  targetStage: before-platform-release
+approval:
+  required: true
+  recorded: false
+  promotionAllowed: false
+  releaseAllowed: false
+safety:
+  sqlExecuted: false
+  sourceModified: false
+  draftsModified: true
+  approvedKnowledgeModified: false
+  releaseCreated: false
+previousReviewOutcome:
+  recommendation: REJECT
+  blockingFindings: 3
+  nonblockingFindings: 6
+  reason: The physical review policy makes parser defects blocking; zero syntax parse
+    errors does not prove metadata correctness.
+  nextAction: correct-parser-defects-and-re-review
+resolutionReport: review/pending/schema-extraction-resolution-report.md

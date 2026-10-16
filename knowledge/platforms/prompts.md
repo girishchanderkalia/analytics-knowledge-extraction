@@ -8,6 +8,10 @@ Apply pending domain review resolutions for platform analytics-foundation.
 Promote the approved domain knowledge for platform analytics-foundation
 ### Physical schema extraction
 Run Physical schema extraction for platform analytics-foundation
+## Physical schema review
+Review the physical schema extraction for platform analytics-foundation
+## approval of Physical schema
+Promote the approved physical schema for platform analytics-foundation
 ### Semantics mappings
 Build semantic mappings for platform analytics-foundation
 ### automatically continue to next allowed stage

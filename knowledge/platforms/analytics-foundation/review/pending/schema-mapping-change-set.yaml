@@ -21,6 +21,7 @@ parser:
   - 6
   sourceSqlExecuted: false
   functionBodiesCompiled: false
+  dynamicSqlClassification: offline-pglast-PLpgSQL-procedural-tree
 counts:
   schemas: 1
   tables: 308
@@ -62,7 +63,7 @@ outputs:
   sha256: 22e00918e84eaf87ab4a482f4605eff5a057a49b957f592e16f90b59ea6be500
 - path: knowledge/draft/schema/functions.jsonl
   records: 8
-  sha256: 76a17b7bd9e0eee880e8d19be18ba7eb75d58e8abf96608fe25acdc2420d1e61
+  sha256: 839fbadc1fb8d0670b85ab960cd4c1ccf664caf306c95524aa69a64e36bd5221
 - path: knowledge/draft/schema/sequences.jsonl
   records: 117
   sha256: bfe43468c31f973b70f4cae846b6d0c976b3996f34282ba633b95f7d87eedac7
@@ -661,3 +662,9 @@ approval:
   requiredBeforePromotion: true
   releaseAllowed: false
 nextStage: semantic-mapping
+physicalSchemaCorrection:
+  resolutionReport: review/pending/schema-extraction-resolution-report.md
+  recordsUpdated: 3
+  field: hasDynamicSql
+  previousFunctionsSha256: 76a17b7bd9e0eee880e8d19be18ba7eb75d58e8abf96608fe25acdc2420d1e61
+  sourceUnchanged: true
