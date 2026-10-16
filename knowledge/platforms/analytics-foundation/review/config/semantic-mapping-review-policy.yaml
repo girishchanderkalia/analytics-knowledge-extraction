@@ -1,0 +1,237 @@
+apiVersion: knowledge-review/v1
+kind: SemanticMappingReviewPolicy
+
+metadata:
+  id: analytics-foundation-semantic-mapping-review
+  platformId: analytics-foundation
+
+spec:
+
+  scope:
+    knowledgeLayer: semantic-mapping
+
+    requiredEvidence:
+      domain: approved
+      physicalSchema: approved
+
+  principles:
+
+    # A name match alone never proves semantic equivalence.
+    nameSimilarityIsVerification: false
+
+    # Lack of evidence should remain unresolved.
+    allowUnresolvedMappings: true
+
+    # Unsupported mappings must never be guessed.
+    allowInferredRuntimeMappings: false
+
+  verificationStates:
+
+    verified:
+      description: >
+        Approved domain evidence and approved physical-schema evidence
+        independently support the mapping.
+      runtimeEligible: true
+
+    partially-verified:
+      description: >
+        Part of the documented mapping is supported but one or more
+        semantic, lineage, identifier, or structural elements remain
+        unverified.
+      runtimeEligible: false
+
+    conflict:
+      description: >
+        Approved evidence sources disagree about the mapping.
+      runtimeEligible: false
+
+    unresolved:
+      description: >
+        Evidence is insufficient to establish or reject the mapping.
+      runtimeEligible: false
+
+    deprecated:
+      description: >
+        The mapping refers to explicitly deprecated domain or physical
+        structures.
+      runtimeEligible: false
+
+  evidenceRules:
+
+    verified:
+      require:
+        - approved-domain-evidence
+        - approved-physical-schema-evidence
+
+    viewColumnMapping:
+      requireWhenAvailable:
+        - view-lineage
+
+    identifierMapping:
+      preserveCategories:
+        - canonical
+        - associating
+        - internal-database
+        - composite
+
+      prohibitCategoryEquivalence:
+        - [canonical, associating]
+        - [composite, internal-database]
+
+    relationshipMapping:
+      requireOneOf:
+        - declared-foreign-key
+        - verified-view-lineage
+        - documented-domain-relationship-with-physical-join-evidence
+
+    canonicalPath:
+      requireEverySegmentResolvable: true
+
+  conflictRules:
+
+    # Never silently choose one side.
+    automaticResolution: false
+
+    preserve:
+      - domain-claim
+      - physical-fact
+      - evidence-references
+
+    requiresHumanReview: true
+
+  unresolvedRules:
+
+    blocksMappingLayerApproval: false
+    runtimeEligible: false
+    preserveReason: true
+    requireMissingEvidenceDescription: true
+
+  sourceMappingRules:
+
+    documentedMappings:
+      initialState: documented
+      verifyIndividually: true
+
+    doNotBulkVerifyBy:
+      - matching-object-name
+      - matching-column-name
+      - name-similarity
+      - matching-data-type-only
+
+  runtimePolicy:
+
+    defaultEligible: false
+
+    eligibleStates:
+      - verified
+
+    denyWhen:
+      - restricted-physical-object
+      - unresolved
+      - conflict
+      - partially-verified
+      - deprecated
+
+  findingCategories:
+
+    mapping-generator-defect:
+      blocksApproval: true
+
+    missing-approved-evidence:
+      blocksApproval: true
+
+    broken-knowledge-reference:
+      blocksApproval: true
+
+    unsupported-verification:
+      blocksApproval: true
+
+    identifier-category-violation:
+      blocksApproval: true
+
+    physical-object-restricted:
+      blocksApproval: false
+      runtimePolicy: deny
+
+    documented-physical-conflict:
+      blocksApproval: false
+      mappingState: conflict
+      requiresHumanDisposition: true
+
+    insufficient-evidence:
+      blocksApproval: false
+      mappingState: unresolved
+
+    partial-evidence:
+      blocksApproval: false
+      mappingState: partially-verified
+
+    source-model-issue:
+      blocksApproval: false
+      mappingState: unresolved
+
+    repository-improvement:
+      blocksApproval: false
+      targetStage: before-platform-release
+
+  validation:
+
+    require:
+      - valid-jsonl
+      - unique-stable-ids
+      - reference-integrity
+      - approved-domain-references
+      - approved-schema-references
+      - evidence-traceability
+      - runtime-restriction-propagation
+      - identifier-category-preservation
+      - mapping-state-consistency
+
+    prohibit:
+      - runtime-eligible-unresolved-mapping
+      - runtime-eligible-conflicting-mapping
+      - runtime-eligible-partial-mapping
+      - runtime-eligible-restricted-object
+      - verified-mapping-without-approved-evidence
+
+  mutationRules:
+
+    allowed:
+      - correct-mapping-generator-defect
+      - update-review-metadata
+      - update-mapping-state
+      - update-runtime-eligibility
+      - add-evidence-reference
+      - record-conflict
+      - record-unresolved-reason
+
+    prohibited:
+      - modify-approved-domain-knowledge
+      - modify-approved-physical-schema
+      - modify-source-document
+      - modify-source-schema
+      - invent-semantic-equivalence
+      - silently-resolve-conflict
+      - write-approved-mapping
+      - create-release
+
+  recommendationRules:
+
+    ACCEPT:
+      conditions:
+        - no-blocking-findings
+        - no-nonblocking-comments
+
+    ACCEPT_WITH_COMMENTS:
+      conditions:
+        - no-blocking-findings
+        - one-or-more-nonblocking-comments
+
+    REJECT:
+      conditions:
+        - one-or-more-blocking-findings
+
+  completion:
+
+    stopBeforeHumanApproval: true
+    humanApprovalRequired: true

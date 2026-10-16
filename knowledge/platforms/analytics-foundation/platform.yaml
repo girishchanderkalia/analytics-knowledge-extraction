@@ -14,7 +14,6 @@ spec:
         path: sources/domain/Lana-ContextModel.pdf
         type: pdf
         authority: domain-model
-
     schema:
       - id: lanadb-schema
         path: sources/schema/lanadb-schema.sql
@@ -24,7 +23,6 @@ spec:
   database:
     system: postgresql
     datasource: lanadb
-
     allowedSchemas:
       - lisa
 
@@ -36,7 +34,6 @@ spec:
     domain:
       draftPath: knowledge/draft/domain
       approvedPath: knowledge/approved/domain
-
       outputs:
         concepts: concepts.jsonl
         attributes: attributes.jsonl
@@ -50,7 +47,6 @@ spec:
     schema:
       draftPath: knowledge/draft/schema
       approvedPath: knowledge/approved/schema
-
       outputs:
         schemas: schemas.jsonl
         tables: tables.jsonl
@@ -69,7 +65,6 @@ spec:
     mappings:
       draftPath: knowledge/draft/mappings
       approvedPath: knowledge/approved/mappings
-
       outputs:
         entityObjects: entity-object-mappings.jsonl
         attributeColumns: attribute-column-mappings.jsonl
@@ -83,23 +78,19 @@ spec:
     domain:
       agent: document-knowledge-extractor
       skill: extract-pdf-domain-knowledge
-
       requiredFields:
         - id
         - platformId
         - status
         - sourceRefs
-
       identifierCategories:
         - canonical
         - associating
         - internal-database
         - composite
-
       evidencePolicy:
         documentDatabaseMappings: documented
         schemaVerificationRequired: true
-
       preserve:
         - definitions
         - attributes
@@ -114,7 +105,6 @@ spec:
     schema:
       agent: database-schema-extractor
       skill: parse-postgresql-schema
-
       executeSourceSql: false
       preserveQualifiedNames: true
       resolveAlterTableConstraints: true
@@ -123,18 +113,27 @@ spec:
     mappings:
       agent: semantic-mapping-builder
       skill: map-domain-to-schema
-
       evidenceStates:
         - documented
         - declared
         - implemented
         - verified
+        - partially-verified
+        - conflict
         - inferred
         - unresolved
-
+        - deprecated
       verifiedRequires:
         - approved-domain-evidence
-        - physical-schema-evidence
+        - approved-physical-schema-evidence
+      runtimeEligibleStates:
+        - verified
+      runtimeDeniedStates:
+        - partially-verified
+        - conflict
+        - inferred
+        - unresolved
+        - deprecated
 
   review:
     pendingPath: review/pending
@@ -144,65 +143,64 @@ spec:
 
     stages:
       domain:
-        reviewFile: domain-review.md
-        changeSetFile: domain-change-set.yaml
-        findingsFile: domain-review-findings.md
-        approvalFile: domain-approval.yaml
-        stopForHumanApproval: true
-        
         policy: review/config/domain-review-policy.yaml
         draftPath: knowledge/draft/domain
         pendingPath: review/pending
         approvedPath: knowledge/approved/domain
-
         inputs:
           review: domain-review.md
           findings: domain-review-findings.md
           changeSet: domain-change-set.yaml
           resolutions: domain-review-resolutions.yaml
-
         outputs:
           review: domain-review.md
           findings: domain-review-findings.md
           changeSet: domain-change-set.yaml
           resolutionReport: domain-resolution-report.md
-
         approval:
           required: true
+          stopForHumanApproval: true
           approvalFile: review/approved/domain-approval.yaml
 
-      schemaMappings:
-        reviewFile: schema-mapping-review.md
-        changeSetFile: schema-mapping-change-set.yaml
-        findingsFile: schema-mapping-review-findings.md
-        approvalFile: schema-mapping-approval.yaml
-        stopForHumanApproval: true
-
-        policy: review/config/schema-mapping-review-policy.yaml
-        draftPath: knowledge/draft/mappings
-        pendingPath: review/pending
-        approvedPath: knowledge/approved/mappings
-
-        approval:
-          required: true
-          approvalFile: review/approved/schema-mapping-approval.yaml
-      
       physicalSchema:
         policy: review/config/schema-extraction-review-policy.yaml
         draftPath: knowledge/draft/schema
+        pendingPath: review/pending
         approvedPath: knowledge/approved/schema
+        inputs:
+          review: schema-extraction-review.md
+          findings: schema-extraction-findings.md
+          changeSet: schema-extraction-change-set.yaml
+          resolutions: schema-extraction-resolutions.yaml
+        outputs:
+          review: schema-extraction-review.md
+          findings: schema-extraction-findings.md
+          changeSet: schema-extraction-change-set.yaml
+          resolutionReport: schema-extraction-resolution-report.md
+        approval:
+          required: true
+          stopForHumanApproval: true
+          approvalFile: review/approved/schema-extraction-approval.yaml
 
-      inputs:
-        review: schema-extraction-review.md
-        findings: schema-extraction-findings.md
-        changeSet: schema-extraction-change-set.yaml
-
-      outputs:
-        resolutionReport: schema-extraction-resolution-report.md
-
-      approval:
-        required: true
-        approvalFile: review/approved/schema-extraction-approval.yaml
+      semanticMappings:
+        policy: review/config/semantic-mapping-review-policy.yaml
+        draftPath: knowledge/draft/mappings
+        pendingPath: review/pending
+        approvedPath: knowledge/approved/mappings
+        inputs:
+          review: semantic-mapping-review.md
+          findings: semantic-mapping-findings.md
+          changeSet: semantic-mapping-change-set.yaml
+          resolutions: semantic-mapping-resolutions.yaml
+        outputs:
+          review: semantic-mapping-review.md
+          findings: semantic-mapping-findings.md
+          changeSet: semantic-mapping-change-set.yaml
+          resolutionReport: semantic-mapping-resolution-report.md
+        approval:
+          required: true
+          stopForHumanApproval: true
+          approvalFile: review/approved/semantic-mapping-approval.yaml
 
   release:
     immutable: true
