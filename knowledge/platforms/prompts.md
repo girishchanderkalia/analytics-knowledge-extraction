@@ -1,7 +1,10 @@
 ### Domain Extraction
 Run domain extraction for platform analytics-foundation
-### Domain review
+### Domain review withou resolution
 Review the current domain draft for platform analytics-foundation
+### Review resolution
+Apply pending domain review resolutions for platform analytics-foundation.
+
 ### Physical schema extraction
 Run Physical schema extraction for platform analytics-foundation
 ### Semantics mappings

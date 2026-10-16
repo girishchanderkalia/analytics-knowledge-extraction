@@ -1,7 +1,7 @@
 platformId: analytics-foundation
 stage: domain
-status: pending-human-review
-configurationPath: sources/platform.yaml
+status: resolved-pending-human-approval
+configurationPath: platform.yaml
 source:
   id: lana-context-model
   path: sources/domain/Lana-ContextModel.pdf
@@ -14,7 +14,7 @@ source:
 previousExtraction: null
 sourceComparison: initial-extraction-no-previous-hash
 changes:
-  added: 399
+  added: 400
   updated: 0
   removed: 0
 counts:
@@ -23,36 +23,36 @@ counts:
   relationships: 48
   identifiers: 16
   enumerations: 23
-  rules: 77
+  rules: 78
   documentedMappings: 99
   unresolved: 28
 outputs:
 - path: knowledge/draft/domain/concepts.jsonl
   records: 35
-  sha256: e80ad057cc17ca0c9ce9f37139b23ec1f05fa292d28274516151137fc04b95e4
+  sha256: ab2ba1de10dafebaff5c49a2f607bac3fb28f0422353d6d63843a443e6886280
 - path: knowledge/draft/domain/attributes.jsonl
   records: 73
-  sha256: 4b9870d543d0764ec74808744260aaf6c2e83aed2e593b134c6ba695dd1bfea4
+  sha256: 5767e9afedb57a9a04a5a3b70a3fdaa078deb2b5dd03c559a008166b23be4566
 - path: knowledge/draft/domain/relationships.jsonl
   records: 48
-  sha256: b01710a04d21284b27513b915a9ec84586ba375f2e78fe25f703f7f8c3d05339
+  sha256: 59fa03f79c60d60830cf697b56c04702b378e90ea453b7c3c63e9b507d554458
 - path: knowledge/draft/domain/identifiers.jsonl
   records: 16
-  sha256: 435a019426bd8533331ccd2607561d86cc95a32d349ddca1ce5b0e6f55e253ee
+  sha256: 2a6f8f6849fec165bae84ff6a6de7ca7589bd0a2e9da86bc52a68c9c0cc989ad
 - path: knowledge/draft/domain/enumerations.jsonl
   records: 23
-  sha256: 449af3c534670ff4ad8bda170d2216168d2d0de477ffdbd656c6c01da2c15cf6
+  sha256: e2f75ac73770ebad88c8171f422fd5ff440e0f5f90578549139c6c87bd6e90ca
 - path: knowledge/draft/domain/rules.jsonl
-  records: 77
-  sha256: 1a6b28fb4f83e85d0f1eb503b77824fe4998e3dc271a1966935bda5c99c163f7
+  records: 78
+  sha256: c169a94bcf8f47bb6292b11d3de6ff8ae4f89d214c3aa2ad2850f8daf852f0aa
 - path: knowledge/draft/domain/documented-mappings.jsonl
   records: 99
-  sha256: f5e5e5784ed19dc06aa00643a7396da747034057de8ec4fac3795565c535fd27
+  sha256: d8086fe7a7c056f43cbefb9f56e212c0eaae61080c913574c67e815491b99485
 - path: knowledge/draft/domain/unresolved.jsonl
   records: 28
-  sha256: 2b5a0fe0aff49f256d60cf4b41aed5e02357415b282bf19ccdc4230bd7eebe11
+  sha256: dfd0039aeaf094a1ca8f3d1038e85ee61118a85f52ff1c0c82a3c28870d58dd8
 validation:
-  result: passed-with-open-review-findings
+  result: passed-with-nonblocking-comments
   checks:
   - JSONL round-trip
   - local structural JSON Schema
@@ -64,6 +64,13 @@ validation:
   - draft-only status
   - documented-only mapping evidence
   - cardinality syntax
+  - resolution-to-finding coverage
+  - policy categories and permitted dispositions
+  - policy-derived blocking/runtime treatment
+  - unchanged source facts and source references
+  - preserved enum literals and non-executable source variant
+  - unverified mapping runtime exclusion
+  - protected source/approval/release checksums
   repositoryValidator: 'unavailable: workflow references a scripts/validate_knowledge.py
     file absent from this repository'
   notApplicable:
@@ -78,5 +85,31 @@ validation:
 approval:
   required: true
   recorded: false
-  nextStage: domain-review
+  nextStage: human-domain-approval
   releaseAllowed: false
+resolutionChanges:
+  baselineRecords: 399
+  added: 1
+  updated: 128
+  removed: 0
+  unchanged: 271
+  input: review/pending/domain-review-resolutions.yaml
+  inputSha256: 9734c28a063b43090e570e188ad496e0f4bcb19964620337030b16cf27647ef9
+  policy: review/config/domain-review-policy.yaml
+  policySha256: 12aeac842466706e2bddfb9f96ba659231790fc17e201acc1abac37f4054f8c0
+  report: review/pending/domain-resolution-report.md
+  categoryCounts:
+    accepted-source-issue: 17
+    deferred-schema-verification: 8
+    resolved-by-policy: 3
+  dispositionNormalization:
+    resolved-by-extraction-policy: resolved-by-policy
+    resolved-with-source-variant: resolved-by-policy
+    promoted-to-domain-rule: resolved-by-policy
+reviewOutcome:
+  structuralValidation: passed
+  semanticRecommendation: ACCEPT_WITH_COMMENTS
+  blockingCommentsRemaining: 0
+  nonblockingCommentsRemaining: 25
+  resolvedByPolicy: 3
+  nextAction: human-domain-approval
