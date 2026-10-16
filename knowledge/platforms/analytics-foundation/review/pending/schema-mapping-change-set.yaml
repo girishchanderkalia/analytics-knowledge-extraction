@@ -1,0 +1,663 @@
+platformId: analytics-foundation
+stage: physical-schema-extraction
+status: draft-extracted
+configurationPath: platform.yaml
+scope: Physical schema only; semantic mappings and combined schema-mapping review
+  are pending.
+source:
+  id: lanadb-schema
+  path: sources/schema/lanadb-schema.sql
+  sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+  bytes: 6018046
+  lines: 129834
+  databaseVersion: 17.11 - Percona Server for PostgreSQL 17.11.1
+previousExtraction: null
+sourceComparison: initial-extraction-no-previous-hash
+parser:
+  library: pglast
+  version: v8.6
+  grammarVersion:
+  - 18
+  - 6
+  sourceSqlExecuted: false
+  functionBodiesCompiled: false
+counts:
+  schemas: 1
+  tables: 308
+  views: 13
+  columns: 14981
+  primaryKeys: 106
+  foreignKeys: 415
+  indexes: 456
+  comments: 14680
+  functions: 8
+  sequences: 117
+  viewLineage: 108
+  restrictedObjects: 148
+  parseErrors: 0
+outputs:
+- path: knowledge/draft/schema/schemas.jsonl
+  records: 1
+  sha256: 63ae8e0e32d978c1de72451fc2100eea7ecb492aecc27edb4303c9c57b1f0a16
+- path: knowledge/draft/schema/tables.jsonl
+  records: 308
+  sha256: 12616a81fa9b178bb49daaa1f91d3cba640e73848f2c3210224ead36aa0eb812
+- path: knowledge/draft/schema/views.jsonl
+  records: 13
+  sha256: d38cf599e7c6126fb77c2cac38a3e21b5943a2a26833a1fe5df5e571c3d1876a
+- path: knowledge/draft/schema/columns.jsonl
+  records: 14981
+  sha256: 101467751df2183ecaf0793c9e6d4a7f5a9deaac5dd284e0f4c7878f25fe76a6
+- path: knowledge/draft/schema/primary-keys.jsonl
+  records: 106
+  sha256: 01440733f3245b2aec53ddd0d061fe6da3adf3fe15165918cfd5a1865bf17eab
+- path: knowledge/draft/schema/foreign-keys.jsonl
+  records: 415
+  sha256: 512f2b511727dc24fb7c7d08577e4e2b9986a2e1984fe6d02809a7996ad2cb04
+- path: knowledge/draft/schema/indexes.jsonl
+  records: 456
+  sha256: 5614326785d893ccd3c4cdb9076fcc87e4fae11a591de74ed81be94229383083
+- path: knowledge/draft/schema/comments.jsonl
+  records: 14680
+  sha256: 22e00918e84eaf87ab4a482f4605eff5a057a49b957f592e16f90b59ea6be500
+- path: knowledge/draft/schema/functions.jsonl
+  records: 8
+  sha256: 76a17b7bd9e0eee880e8d19be18ba7eb75d58e8abf96608fe25acdc2420d1e61
+- path: knowledge/draft/schema/sequences.jsonl
+  records: 117
+  sha256: bfe43468c31f973b70f4cae846b6d0c976b3996f34282ba633b95f7d87eedac7
+- path: knowledge/draft/schema/view-lineage.jsonl
+  records: 108
+  sha256: 74fdb5acf34d84c77f6288c90c024dfe1db865a590d7b52be77bb38726bd58be
+- path: knowledge/draft/schema/restricted-objects.jsonl
+  records: 148
+  sha256: 1859d5d6f900ecc9a43f4f0d8c685a7aea4e5f0588c5fc4b2e0ee1337bf057d9
+- path: knowledge/draft/schema/parse-errors.jsonl
+  records: 0
+  sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+statementCoverage:
+  VariableSetStmt: 56
+  SelectStmt: 1
+  CreateSchemaStmt: 1
+  CreateFunctionStmt: 8
+  CreateStmt: 308
+  CommentStmt: 14680
+  AlterTableStmt: 564
+  ViewStmt: 13
+  CreateSeqStmt: 102
+  AlterSeqStmt: 4
+  IndexStmt: 456
+  CreateTrigStmt: 4
+alterTableCommands:
+  AT_AddIdentity: 15
+  AT_ColumnDefault: 4
+  AT_AddConstraint: 545
+dumpEntryInventory:
+  SCHEMA: 1
+  FUNCTION: 8
+  TABLE: 308
+  COMMENT: 14680
+  SEQUENCE: 117
+  VIEW: 13
+  SEQUENCE OWNED BY: 4
+  DEFAULT: 4
+  CONSTRAINT: 130
+  INDEX: 456
+  TRIGGER: 4
+  FK CONSTRAINT: 415
+uniqueConstraintsEmbeddedInTables: 24
+triggersEmbeddedInTables: 4
+sessionStatementsAndDirectives:
+- statementType: psql-directive
+  directive: \restrict
+  line: 5
+  reason: pg_dump session guard; not executed.
+- statementType: psql-directive
+  directive: \unrestrict
+  line: 129832
+  reason: pg_dump session guard; not executed.
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 10
+    lineEnd: 10
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 11
+    lineEnd: 11
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 12
+    lineEnd: 12
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 13
+    lineEnd: 13
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 14
+    lineEnd: 14
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 15
+    lineEnd: 15
+    statementType: VariableSetStmt
+- statementType: SelectStmt
+  reason: Dump search_path setup; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 16
+    lineEnd: 16
+    statementType: SelectStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 17
+    lineEnd: 17
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 18
+    lineEnd: 18
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 19
+    lineEnd: 19
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 20
+    lineEnd: 20
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 306
+    lineEnd: 306
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 308
+    lineEnd: 308
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 1390
+    lineEnd: 1390
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 1426
+    lineEnd: 1426
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 2914
+    lineEnd: 2914
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 2948
+    lineEnd: 2948
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 93856
+    lineEnd: 93856
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 93931
+    lineEnd: 93931
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122172
+    lineEnd: 122172
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122222
+    lineEnd: 122222
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122264
+    lineEnd: 122264
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122274
+    lineEnd: 122274
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122284
+    lineEnd: 122284
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122294
+    lineEnd: 122294
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122304
+    lineEnd: 122304
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122322
+    lineEnd: 122322
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122364
+    lineEnd: 122364
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122374
+    lineEnd: 122374
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122480
+    lineEnd: 122480
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 122490
+    lineEnd: 122490
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123228
+    lineEnd: 123228
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123245
+    lineEnd: 123245
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123317
+    lineEnd: 123317
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123326
+    lineEnd: 123326
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123524
+    lineEnd: 123524
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123547
+    lineEnd: 123547
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123794
+    lineEnd: 123794
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123803
+    lineEnd: 123803
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123819
+    lineEnd: 123819
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 123835
+    lineEnd: 123835
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124131
+    lineEnd: 124131
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124140
+    lineEnd: 124140
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124317
+    lineEnd: 124317
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124326
+    lineEnd: 124326
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124776
+    lineEnd: 124776
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 124792
+    lineEnd: 124792
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125088
+    lineEnd: 125088
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125097
+    lineEnd: 125097
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125337
+    lineEnd: 125337
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125346
+    lineEnd: 125346
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125635
+    lineEnd: 125635
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 125651
+    lineEnd: 125651
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 126213
+    lineEnd: 126213
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 126222
+    lineEnd: 126222
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 126357
+    lineEnd: 126357
+    statementType: VariableSetStmt
+- statementType: VariableSetStmt
+  reason: Dump session setting; never executed.
+  sourceRefs:
+  - sourceId: lanadb-schema
+    sourcePath: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    lineStart: 126366
+    lineEnd: 126366
+    statementType: VariableSetStmt
+validation:
+  result: passed
+  checks:
+  - all SQL parsed offline
+  - dump object inventory matches outputs
+  - JSONL serialization round-trip
+  - unique IDs
+  - record references
+  - foreign key targets/columns
+  - ALTER constraints and identity sequences
+  - source line bounds/hash
+  - administrative restrictions
+  - unchanged prior records, approval and sources
+  - five parser fixture tests (quoted names, composite keys, identity/ownership, defaults,
+    indexes, comments, UNION/join lineage, dollar-quoted routines, unsupported statements)
+  - all 89 view projections resolved to source column IDs including every UNION operand
+  limitations:
+  - No repository-wide validator or record JSON Schemas are supplied.
+  - View expression types are null when not determinable by direct source/cast or
+    identical UNION operand types; view nullability is not inferred.
+  - PL/pgSQL bodies are preserved as opaque untrusted SQL; not executed or compiled.
+  - Unique/check constraints and trigger definitions are embedded in table records
+    because no separate output files are configured.
+  - Declared metadata is not a domain mapping verification or runtime authorization.
+reviewPolicy:
+  path: review/config/schema-mapping-review-policy.yaml
+  available: false
+approval:
+  recorded: false
+  requiredBeforePromotion: true
+  releaseAllowed: false
+nextStage: semantic-mapping

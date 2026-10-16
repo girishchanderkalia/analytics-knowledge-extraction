@@ -1,0 +1,148 @@
+apiVersion: knowledge-review/v1
+kind: DomainKnowledgePromotion
+metadata:
+  platformId: analytics-foundation
+  stage: domain
+spec:
+  status: promoted
+  approvalRef:
+    approvalId: analytics-foundation-domain-initial
+    path: review/approved/domain-approval.yaml
+    sha256: 40fc6de459787ae9062af53b16bd79293e48dfb84855128648bed16478746b3e
+  approvedBy: gkalia
+  approvedOn: 2026-10-16
+  source:
+    id: lana-context-model
+    path: sources/domain/Lana-ContextModel.pdf
+    sha256: 77fd528d1ef8ff5257e203d76aa8b3fa8ebb952fa062b08e6a1924573b7bf51f
+    pages: 44
+    documentId: D001047842
+    headerVersion: 099
+    modelVersion: 2.1.3
+    lastUpdate: '2025-11-27'
+  reviewedInputs:
+  - path: review/pending/domain-change-set.yaml
+    sha256: 0cb61e1280036dfe451e8579137b2730a9c2aef9ee2920a45cf1dcae2d01c566
+  - path: review/pending/domain-resolution-report.md
+    sha256: 56feccdb9a66b307c6f5698551da3c2abf6de8c3fa42f9e685ae8ef1a6cb26c3
+  - path: review/pending/domain-review-findings.md
+    sha256: 8b35f5425c8bcc42486df76ad3ff0efc0fbf94c16f43df7a6ddeb7087a727c7f
+  - path: review/pending/domain-review-resolutions.yaml
+    sha256: 9734c28a063b43090e570e188ad496e0f4bcb19964620337030b16cf27647ef9
+  - path: review/pending/domain-review.md
+    sha256: 3ed6d33534b623078cd2b273dbce381c03e096f37bb8ef99ced149a2b05dac7d
+  records: 400
+  outputs:
+    concepts:
+      draftPath: knowledge/draft/domain/concepts.jsonl
+      draftSha256: ab2ba1de10dafebaff5c49a2f607bac3fb28f0422353d6d63843a443e6886280
+      approvedPath: knowledge/approved/domain/concepts.jsonl
+      records: 35
+      approvedSha256: 4cbbcb00d122314d76db5a84980ad061601e728d18ff8d5503717bf90c4e39b2
+    attributes:
+      draftPath: knowledge/draft/domain/attributes.jsonl
+      draftSha256: 5767e9afedb57a9a04a5a3b70a3fdaa078deb2b5dd03c559a008166b23be4566
+      approvedPath: knowledge/approved/domain/attributes.jsonl
+      records: 73
+      approvedSha256: 3f79f42adedd386c9eb8e7bfb0c3daa9641306dbfd4a5e7730633ddd004fceb9
+    relationships:
+      draftPath: knowledge/draft/domain/relationships.jsonl
+      draftSha256: 59fa03f79c60d60830cf697b56c04702b378e90ea453b7c3c63e9b507d554458
+      approvedPath: knowledge/approved/domain/relationships.jsonl
+      records: 48
+      approvedSha256: 960a7882e99c41e624e91347b019dd2a4af60b62c368618694a45b32d1615859
+    identifiers:
+      draftPath: knowledge/draft/domain/identifiers.jsonl
+      draftSha256: 2a6f8f6849fec165bae84ff6a6de7ca7589bd0a2e9da86bc52a68c9c0cc989ad
+      approvedPath: knowledge/approved/domain/identifiers.jsonl
+      records: 16
+      approvedSha256: d57aff2a802fb293a92a2f39330edb7f0345ad0a3940412b1c1b5a179e72b8ac
+    enumerations:
+      draftPath: knowledge/draft/domain/enumerations.jsonl
+      draftSha256: e2f75ac73770ebad88c8171f422fd5ff440e0f5f90578549139c6c87bd6e90ca
+      approvedPath: knowledge/approved/domain/enumerations.jsonl
+      records: 23
+      approvedSha256: 863d0c78116ce04c3dee226d41b2b9a493234ab5e911c0f2627495faf1f167c2
+    rules:
+      draftPath: knowledge/draft/domain/rules.jsonl
+      draftSha256: c169a94bcf8f47bb6292b11d3de6ff8ae4f89d214c3aa2ad2850f8daf852f0aa
+      approvedPath: knowledge/approved/domain/rules.jsonl
+      records: 78
+      approvedSha256: ffab9310dae6e29a8c74784cc943467031e0c297dc5806ac83e5040309e7428a
+    documentedMappings:
+      draftPath: knowledge/draft/domain/documented-mappings.jsonl
+      draftSha256: d8086fe7a7c056f43cbefb9f56e212c0eaae61080c913574c67e815491b99485
+      approvedPath: knowledge/approved/domain/documented-mappings.jsonl
+      records: 99
+      approvedSha256: 9713834089579f3e29633f16f6f7d7ff16cb1a5220a7de2be3ece863b656aa87
+    unresolved:
+      draftPath: knowledge/draft/domain/unresolved.jsonl
+      draftSha256: dfd0039aeaf094a1ca8f3d1038e85ee61118a85f52ff1c0c82a3c28870d58dd8
+      approvedPath: knowledge/approved/domain/unresolved.jsonl
+      records: 28
+      approvedSha256: 40511533b7133310fb844b1f43efd01fdf9a1d61e2b46208cc4ae5f9147378f1
+  mutation: Copied reviewed draft records, set status to approved, attached existing
+    approval reference and runtimeAuthorized=false. All source facts, IDs, sourceRefs
+    and runtime policies preserved.
+  draftsRetained: true
+  conditions:
+  - id: source-issues-retained
+    description: 'Source-model issues remain documented as non-blocking knowledge.
+      Approval does not imply that those source issues are resolved.
+
+      '
+  - id: mappings-unverified
+    description: 'The 99 documented database mappings are not approved for runtime
+      use until verified against the physical LanaDB schema.
+
+      '
+  - id: schema-findings-deferred
+    description: 'The eight schema-related findings must be evaluated during the semantic-mapping
+      stage.
+
+      '
+  - id: identifier-separation
+    description: 'Composite domain identifiers and internal numeric database identifiers
+      must remain separate and non-interchangeable.
+
+      '
+  - id: enum-variant
+    description: 'SIMULATED is the canonical model enum literal. SIMULATION is retained
+      only as a source wording variant unless separately verified.
+
+      '
+  - id: release-validation
+    description: 'Repository-level validation is required before creating the first
+      immutable platform release.
+
+      '
+  runtimeAuthorization:
+    domainConcepts: false
+    documentedMappings: false
+    reason: 'Human domain approval permits promotion into the approved domain layer.
+      Runtime use begins only after schema mapping approval and creation of an immutable
+      platform release.
+
+      '
+  releaseCreated: false
+  nextStage:
+    id: physical-schema-extraction
+    sourceId: lanadb-schema
+  validation:
+    result: passed
+    checks:
+    - recorded human approval scope and conditions
+    - reviewed draft checksums
+    - source/resolution/policy hashes
+    - unique IDs and concept references
+    - required fields and source page bounds
+    - nonblocking finding dispositions
+    - 99 unverified mapping restrictions
+    - enum literal preservation
+    - identifier category separation
+    - approved/draft parity except promotion metadata
+    - protected existing files unchanged
+    limitations:
+    - No repository-level validator or record JSON Schemas are supplied.
+    - Repository-level validation remains required before first immutable release.
+    - No physical schema verification or runtime authorization is asserted.
