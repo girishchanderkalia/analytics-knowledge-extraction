@@ -1,0 +1,70 @@
+apiVersion: knowledge-review/v1
+kind: HumanApproval
+
+metadata:
+  platformId: analytics-foundation
+  stage: domain
+  approvalId: analytics-foundation-domain-initial
+
+spec:
+  decision: approved-with-comments
+
+  approvedBy: gkalia
+  approvedOn: 2026-10-16
+
+  reviewedInputs:
+    - review/pending/domain-review.md
+    - review/pending/domain-review-findings.md
+    - review/pending/domain-review-resolutions.yaml
+    - review/pending/domain-resolution-report.md
+    - review/pending/domain-change-set.yaml
+
+  approvedKnowledge:
+    path: knowledge/draft/domain
+
+  conditions:
+
+    - id: source-issues-retained
+      description: >
+        Source-model issues remain documented as non-blocking knowledge.
+        Approval does not imply that those source issues are resolved.
+
+    - id: mappings-unverified
+      description: >
+        The 99 documented database mappings are not approved for runtime
+        use until verified against the physical LanaDB schema.
+
+    - id: schema-findings-deferred
+      description: >
+        The eight schema-related findings must be evaluated during the
+        semantic-mapping stage.
+
+    - id: identifier-separation
+      description: >
+        Composite domain identifiers and internal numeric database
+        identifiers must remain separate and non-interchangeable.
+
+    - id: enum-variant
+      description: >
+        SIMULATED is the canonical model enum literal. SIMULATION is
+        retained only as a source wording variant unless separately verified.
+
+    - id: release-validation
+      description: >
+        Repository-level validation is required before creating the first
+        immutable platform release.
+
+  runtimeAuthorization:
+    domainConcepts: false
+    documentedMappings: false
+    reason: >
+      Human domain approval permits promotion into the approved domain
+      layer. Runtime use begins only after schema mapping approval and
+      creation of an immutable platform release.
+
+  nextStage:
+    id: physical-schema-extraction
+    sourceId: lanadb-schema
+
+  comments:
+    - Domain extraction accepted with non-blocking source-model limitations.
