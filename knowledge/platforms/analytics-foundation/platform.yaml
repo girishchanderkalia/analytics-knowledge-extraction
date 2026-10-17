@@ -205,6 +205,21 @@ spec:
   release:
     immutable: true
     requireAllApprovals: true
-    includeSourceHashes: true
-    includeChecksums: true
     includeSemanticDiff: true
+    validation:
+      required: true
+      agent: knowledge-release-validator
+      skill: validate-knowledge-release
+      implementation: scripts/validate_knowledge.py
+      evaluations:
+        - evaluations/platform-evaluation.yaml
+        - evaluations/expected-invariants.yaml
+    governance:
+      useGitHistory: true
+      checksumChainRequired: false
+      existingChecksumFields: legacy-metadata
+    runtime:
+      releaseMayContainRuntimeDeniedKnowledge: true
+      eligibleMappingStates: [verified]
+      deniedMappingStates: [partially-verified, conflict, inferred, unresolved, deprecated]
+      preservePhysicalObjectRestrictions: true

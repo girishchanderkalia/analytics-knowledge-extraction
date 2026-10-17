@@ -1,14 +1,18 @@
 ---
 name: build-knowledge-release
-description: Build an immutable release from approved records only. Use when processing application knowledge sources or releases.
+description: Builds an immutable release from approved platform or application knowledge after deterministic validation passes.
 ---
 
-Build an immutable release from approved records only. Generate manifest, JSONL bundle, retrieval index, checksums, changelog, and evaluation summary. Refuse overwrite of an existing release.
+Read the target configuration. Require all configured human approvals and
+promotions and a PASS from the validate-knowledge-release skill for the proposed
+version.
 
-## Output rules
+Package approved knowledge without changing semantic fields or runtime policy.
+A release may contain partially verified, unresolved, conflicting, inferred, or
+deprecated knowledge when those records remain runtime denied.
 
-- Write draft outputs only under the target application's `knowledge/draft`.
-- Use stable IDs and source references.
-- Keep each JSONL record atomic.
-- State unresolved issues explicitly.
-- Do not auto-approve generated content.
+Create the configured manifest, retrieval index or bundle, changelog, and
+validation report. Refuse to overwrite an existing release version.
+
+Do not calculate or validate SHA/checksum chains. Existing checksum fields are
+legacy metadata. Do not approve, promote, or runtime-authorize knowledge.

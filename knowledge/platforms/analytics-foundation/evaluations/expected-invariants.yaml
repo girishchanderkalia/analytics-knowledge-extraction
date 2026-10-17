@@ -1,0 +1,46 @@
+apiVersion: knowledge-evaluation/v1
+kind: KnowledgeIntegrityInvariants
+metadata:
+  id: analytics-foundation-integrity
+  platformId: analytics-foundation
+spec:
+  invariants:
+    - {id: approved-domain-exists, type: layer-not-empty, layer: domain}
+    - {id: approved-schema-exists, type: layer-not-empty, layer: physicalSchema}
+    - {id: approved-mappings-exist, type: layer-not-empty, layer: semanticMappings}
+    - {id: platform-id-consistent, type: record-field-value, scope: approved, field: platformId, expected: analytics-foundation}
+    - {id: approved-record-status, type: record-field-value, scope: approved, field: status, expected: approved}
+    - {id: unique-record-ids, type: unique-record-id, scope: approved}
+    - {id: domain-approval-exists, type: file-exists, path: review/approved/domain-approval.yaml}
+    - {id: schema-approval-exists, type: file-exists, path: review/approved/schema-extraction-approval.yaml}
+    - {id: mapping-approval-exists, type: file-exists, path: review/approved/semantic-mapping-approval.yaml}
+    - {id: domain-promotion-exists, type: file-exists, path: review/approved/domain-promotion.yaml}
+    - {id: schema-promotion-exists, type: file-exists, path: review/approved/schema-extraction-promotion.yaml}
+    - {id: mapping-promotion-exists, type: file-exists, path: review/approved/semantic-mapping-promotion.yaml}
+    - id: valid-mapping-classification
+      type: allowed-field-values
+      scope: approvedSemanticMappings
+      field: classification
+      values: [verified, partially-verified, conflict, inferred, unresolved, deprecated]
+    - {id: mapping-state-consistent, type: equal-fields, scope: approvedSemanticMappings, fields: [classification, evidenceState]}
+    - {id: domain-references-resolve, type: record-reference-integrity, scope: approvedSemanticMappings, referenceField: domainRecordRefs, target: approvedDomain, allowEmpty: true}
+    - {id: physical-references-resolve, type: record-reference-integrity, scope: approvedSemanticMappings, referenceField: physicalRecordRefs, target: approvedPhysicalSchema, allowEmpty: true}
+    - id: nonverified-mappings-runtime-denied
+      type: classification-runtime-policy
+      scope: approvedSemanticMappings
+      classifications: [partially-verified, conflict, inferred, unresolved, deprecated]
+      require: {runtimeEligible: false, runtimeAuthorized: false}
+    - id: authorization-requires-eligibility
+      type: boolean-implication
+      scope: approvedSemanticMappings
+      if: {field: runtimeAuthorized, equals: true}
+      then: {field: runtimeEligible, equals: true}
+    - id: eligibility-requires-verification
+      type: field-implication
+      scope: approvedSemanticMappings
+      if: {field: runtimeEligible, equals: true}
+      then: {field: classification, equals: verified}
+    - id: restricted-objects-runtime-denied
+      type: restricted-object-policy
+      require: {runtimeAuthorized: false, runtimePolicy: exclude-from-runtime}
+    - {id: release-version-immutable, type: immutable-release-version}

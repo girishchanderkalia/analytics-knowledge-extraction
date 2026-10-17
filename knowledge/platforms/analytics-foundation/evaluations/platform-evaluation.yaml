@@ -1,0 +1,42 @@
+apiVersion: knowledge-evaluation/v1
+kind: PlatformKnowledgeEvaluation
+metadata:
+  id: analytics-foundation-release-evaluation
+  platformId: analytics-foundation
+spec:
+  layers:
+    domain:
+      path: knowledge/approved/domain
+      required: true
+    physicalSchema:
+      path: knowledge/approved/schema
+      required: true
+    semanticMappings:
+      path: knowledge/approved/mappings
+      required: true
+  approvals:
+    domain:
+      file: review/approved/domain-approval.yaml
+      required: true
+    physicalSchema:
+      file: review/approved/schema-extraction-approval.yaml
+      required: true
+    semanticMappings:
+      file: review/approved/semantic-mapping-approval.yaml
+      required: true
+  promotions:
+    domain:
+      file: review/approved/domain-promotion.yaml
+      required: true
+    physicalSchema:
+      file: review/approved/schema-extraction-promotion.yaml
+      required: true
+    semanticMappings:
+      file: review/approved/semantic-mapping-promotion.yaml
+      required: true
+  runtime:
+    eligibleMappingStates: [verified]
+    deniedMappingStates: [partially-verified, conflict, inferred, unresolved, deprecated]
+  release:
+    allowRuntimeDeniedKnowledge: true
+    immutable: true

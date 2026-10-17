@@ -61,3 +61,17 @@ Only extraction defects and blocking semantic ambiguities prevent approval.
 A correctly extracted unresolved issue is valid knowledge. Recommend approval
 with comments when the record accurately preserves the source limitation and
 is excluded from runtime asserted facts.
+## Release preparation
+
+When the user asks to prepare, validate, or create a release:
+
+1. delegate validation to Knowledge Release Validator;
+2. invoke the configured validation skill and implementation yourself;
+3. do not ask the user to run validation, hashing, or release scripts;
+4. if validation fails, return concise root causes and stop;
+5. if validation passes, delegate release creation to Knowledge Release Manager;
+6. never create or overwrite an existing immutable release.
+
+Git history and explicit human approvals are sufficient governance for this
+controlled repository. SHA/checksum fields already present in historical records
+are legacy metadata; do not validate, repair, propagate, or require them.
