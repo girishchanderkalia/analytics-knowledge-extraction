@@ -1,0 +1,202 @@
+{
+    "apiVersion":  "knowledge-release/v1",
+    "kind":  "PlatformKnowledgeRelease",
+    "platformId":  "analytics-foundation",
+    "platformName":  "Analytics Foundation",
+    "version":  "1.0.0",
+    "immutable":  true,
+    "createdAt":  "2026-10-17T04:26:27.2000404Z",
+    "sourcePlatformConfiguration":  "platform.yaml",
+    "approvalsAndPromotions":  [
+                                   {
+                                       "stage":  "domain",
+                                       "approval":  "review/approved/domain-approval.yaml",
+                                       "promotion":  "review/approved/domain-promotion.yaml",
+                                       "decision":  "approved-with-comments",
+                                       "promotionStatus":  "promoted"
+                                   },
+                                   {
+                                       "stage":  "physicalSchema",
+                                       "approval":  "review/approved/schema-extraction-approval.yaml",
+                                       "promotion":  "review/approved/schema-extraction-promotion.yaml",
+                                       "decision":  "approved-with-comments",
+                                       "promotionStatus":  "promoted"
+                                   },
+                                   {
+                                       "stage":  "semanticMappings",
+                                       "approval":  "review/approved/semantic-mapping-approval.yaml",
+                                       "promotion":  "review/approved/semantic-mapping-promotion.yaml",
+                                       "decision":  "approved-with-comments",
+                                       "promotionStatus":  "promoted"
+                                   }
+                               ],
+    "content":  {
+                    "recordLayers":  [
+                                         {
+                                             "name":  "domain",
+                                             "path":  "knowledge/domain",
+                                             "files":  8,
+                                             "records":  400
+                                         },
+                                         {
+                                             "name":  "physicalSchema",
+                                             "path":  "knowledge/physical-schema",
+                                             "files":  13,
+                                             "records":  31341
+                                         },
+                                         {
+                                             "name":  "semanticMappings",
+                                             "path":  "knowledge/semantic-mappings",
+                                             "files":  7,
+                                             "records":  517
+                                         }
+                                     ],
+                    "retrievalIndex":  "retrieval-index.json",
+                    "files":  [
+                                  {
+                                      "path":  "knowledge/domain/attributes.jsonl",
+                                      "records":  73
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/concepts.jsonl",
+                                      "records":  35
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/documented-mappings.jsonl",
+                                      "records":  99
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/enumerations.jsonl",
+                                      "records":  23
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/identifiers.jsonl",
+                                      "records":  16
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/relationships.jsonl",
+                                      "records":  48
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/rules.jsonl",
+                                      "records":  78
+                                  },
+                                  {
+                                      "path":  "knowledge/domain/unresolved.jsonl",
+                                      "records":  28
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/columns.jsonl",
+                                      "records":  14981
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/comments.jsonl",
+                                      "records":  14680
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/foreign-keys.jsonl",
+                                      "records":  415
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/functions.jsonl",
+                                      "records":  8
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/indexes.jsonl",
+                                      "records":  456
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/parse-errors.jsonl",
+                                      "records":  0
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/primary-keys.jsonl",
+                                      "records":  106
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/restricted-objects.jsonl",
+                                      "records":  148
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/schemas.jsonl",
+                                      "records":  1
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/sequences.jsonl",
+                                      "records":  117
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/tables.jsonl",
+                                      "records":  308
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/view-lineage.jsonl",
+                                      "records":  108
+                                  },
+                                  {
+                                      "path":  "knowledge/physical-schema/views.jsonl",
+                                      "records":  13
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/attribute-column-mappings.jsonl",
+                                      "records":  79
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/canonical-path-mappings.jsonl",
+                                      "records":  88
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/entity-object-mappings.jsonl",
+                                      "records":  99
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/identifier-mappings.jsonl",
+                                      "records":  16
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/relationship-join-mappings.jsonl",
+                                      "records":  48
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/storage-boundaries.jsonl",
+                                      "records":  99
+                                  },
+                                  {
+                                      "path":  "knowledge/semantic-mappings/unresolved-mappings.jsonl",
+                                      "records":  88
+                                  }
+                              ],
+                    "uniqueRecordIds":  32258
+                },
+    "semanticMappingStates":  {
+                                  "verified":  0,
+                                  "partially-verified":  348,
+                                  "conflict":  17,
+                                  "inferred":  0,
+                                  "unresolved":  152,
+                                  "deprecated":  0
+                              },
+    "runtimePolicy":  {
+                          "eligibleStates":  [
+                                                 "verified"
+                                             ],
+                          "deniedStates":  [
+                                               "partially-verified",
+                                               "conflict",
+                                               "inferred",
+                                               "unresolved",
+                                               "deprecated"
+                                           ],
+                          "runtimeEligibleMappings":  0,
+                          "runtimeAuthorizedMappings":  0,
+                          "policyChanged":  false
+                      },
+    "physicalObjectRestrictions":  {
+                                       "restrictedObjects":  148,
+                                       "restrictionsPreserved":  true,
+                                       "runtimeAuthorizationGranted":  false
+                                   },
+    "validationReport":  "validation-report.json",
+    "evaluationSummary":  "evaluations/summary.json",
+    "changelog":  "changelog.md"
+}

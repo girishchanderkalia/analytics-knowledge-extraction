@@ -1,0 +1,44 @@
+{
+    "apiVersion":  "knowledge-release-validation/v1",
+    "platformId":  "analytics-foundation",
+    "releaseVersion":  "1.0.0",
+    "result":  "PASS",
+    "passed":  true,
+    "validator":  ".github/skills/validate-knowledge-release/scripts/validate_knowledge.py",
+    "validationPhase":  "pre-build; proposed version was absent",
+    "counts":  {
+                   "domainRecords":  400,
+                   "physicalSchemaRecords":  31341,
+                   "semanticMappingRecords":  517,
+                   "uniqueRecordIds":  32258,
+                   "mappingClassifications":  {
+                                                  "verified":  0,
+                                                  "partially-verified":  348,
+                                                  "conflict":  17,
+                                                  "inferred":  0,
+                                                  "unresolved":  152,
+                                                  "deprecated":  0
+                                              },
+                   "runtimeEligibleMappings":  0,
+                   "runtimeAuthorizedMappings":  0,
+                   "restrictedPhysicalObjects":  148
+               },
+    "checks":  [
+                   "approved layers contain valid JSON records with unique IDs and approved status",
+                   "platform IDs and source references are present",
+                   "required human approvals and promotions exist and are approved/promoted",
+                   "semantic domain and physical references resolve",
+                   "mapping classifications equal evidence states",
+                   "nonverified mappings remain runtime denied",
+                   "restricted physical objects remain excluded from runtime",
+                   "proposed immutable version was absent before build"
+               ],
+    "errors":  [
+
+               ],
+    "warnings":  [
+
+                 ],
+    "checksumValidation":  "not performed; legacy checksum metadata was not evaluated",
+    "sqlExecution":  "not performed"
+}

@@ -1,0 +1,25 @@
+{
+    "apiVersion":  "knowledge-evaluation-summary/v1",
+    "evaluationConfiguration":  [
+                                    "evaluations/platform-evaluation.yaml",
+                                    "evaluations/expected-invariants.yaml"
+                                ],
+    "releaseVersion":  "1.0.0",
+    "result":  "PASS",
+    "basedOn":  "Knowledge Release Validator deterministic validation and the configured release invariants",
+    "mappingClassifications":  {
+                                   "verified":  0,
+                                   "partially-verified":  348,
+                                   "conflict":  17,
+                                   "inferred":  0,
+                                   "unresolved":  152,
+                                   "deprecated":  0
+                               },
+    "runtimeEligibleMappings":  0,
+    "runtimeAuthorizedMappings":  0,
+    "restrictedPhysicalObjects":  148,
+    "unresolvedMappingsRetained":  152,
+    "conflictMappingsRetained":  17,
+    "partiallyVerifiedMappingsRetained":  348,
+    "checksumChainChecks":  "not performed"
+}
