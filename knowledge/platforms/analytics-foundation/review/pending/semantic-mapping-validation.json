@@ -1,100 +1,262 @@
 {
-  "coverage": {
-    "attributeColumn": {
-      "declared": 76,
-      "unresolved": 3
-    },
-    "canonicalPath": {
-      "declared": 92,
-      "unresolved": 7
-    },
-    "deferredFindingIds": [
-      "analytics-foundation:unresolved:measure-rotation-column",
-      "analytics-foundation:unresolved:exposure-output-prefix",
-      "analytics-foundation:unresolved:measure-machine-name",
-      "analytics-foundation:unresolved:wafer-measures-direction",
-      "analytics-foundation:unresolved:reworked-path-spelling",
-      "analytics-foundation:unresolved:otas-controlfunctional",
-      "analytics-foundation:unresolved:schema-unverified",
-      "analytics-foundation:unresolved:path-example-mismatch"
-    ],
-    "deferredSchemaFindings": 8,
-    "documentedDomainMappingsAssessed": 99,
-    "documentedMappingPhysicalCommentRefs": 20,
-    "entityObject": {
-      "declared": 92,
-      "unresolved": 7
-    },
-    "identifier": {
-      "declared": 5,
-      "unresolved": 11
-    },
-    "implementationEvidenceRecords": 0,
-    "inferredMappings": 0,
-    "relationshipJoin": {
-      "unresolved": 48
-    },
-    "storageBoundary": {
-      "declared": 92,
-      "unresolved": 7
-    },
-    "verifiedSemanticMappings": 0
-  },
-  "humanApproval": "not-performed",
-  "localStructuralChecks": "passed",
-  "outputs": {
-    "attributeColumns": {
-      "path": "knowledge/draft/mappings/attribute-column-mappings.jsonl",
-      "records": 79,
-      "sha256": "d3e2fdd27e06d6b85a6f0dbc7469a4d6226aed7ec8b9c8c761abf362629d8062"
-    },
-    "canonicalPaths": {
-      "path": "knowledge/draft/mappings/canonical-path-mappings.jsonl",
-      "records": 99,
-      "sha256": "bef9cd3276c67bbfaf86bf85ad8aecedbbf683b88f3ded14685fb5d75bc93820"
-    },
-    "entityObjects": {
-      "path": "knowledge/draft/mappings/entity-object-mappings.jsonl",
-      "records": 99,
-      "sha256": "1bceb5320b875a4437e520d1d2e1d2d239848de27e581aff70700f86ab5c09b1"
-    },
-    "identifiers": {
-      "path": "knowledge/draft/mappings/identifier-mappings.jsonl",
-      "records": 16,
-      "sha256": "71db293e0ec825105c1f779e82a4a354b61ac4a30042234119cb34f7c118fc31"
-    },
-    "relationships": {
-      "path": "knowledge/draft/mappings/relationship-join-mappings.jsonl",
-      "records": 48,
-      "sha256": "31450abc8cdeff0063ee43460ba208b265e5a63d798cadf8b34b64f83185a949"
-    },
-    "storageBoundaries": {
-      "path": "knowledge/draft/mappings/storage-boundaries.jsonl",
-      "records": 99,
-      "sha256": "e609d120464c168106e2edb5ae8db6b645d4e979e651ca6c7e8979e63e1953a8"
-    },
-    "unresolved": {
-      "path": "knowledge/draft/mappings/unresolved-mappings.jsonl",
-      "records": 77,
-      "sha256": "acf77650e1386f5665fc5e42d1dd75455a494abd6599e0169c362d5a2f3913cb"
-    }
-  },
+  "apiVersion": "knowledge-review-validation/v1",
+  "kind": "SemanticMappingReviewValidation",
   "platformId": "analytics-foundation",
-  "policyBasedReview": "blocked",
-  "policyGate": {
-    "configuredPolicyExists": false,
-    "configuredPolicyPath": "review/config/schema-mapping-review-policy.yaml",
-    "disposition": "human-review-gate; no policy invented and no auto-approval",
-    "semanticPolicyBytes": 0,
-    "semanticPolicyExists": true,
-    "semanticPolicyPath": "review/config/semantic-mapping-review-policy.yaml",
-    "usablePolicy": false
-  },
+  "stage": "semanticMappings",
+  "reviewId": "analytics-foundation-semantic-mapping-review-2026-10-17",
+  "recommendation": "ACCEPT_WITH_COMMENTS",
+  "humanApproval": "not-performed",
   "promotion": "not-performed",
-  "protectedPreexistingChecksumsUnchanged": true,
-  "release": "not-created",
-  "result": "passed-with-review-gates",
+  "releaseCreated": false,
   "runtimeAuthorized": false,
   "sqlExecuted": false,
-  "stage": "semantic-mapping"
+  "counts": {
+    "documentedMappingsAssessed": 99,
+    "deferredSchemaFindingsAssessed": 8,
+    "mappingOutputFiles": 7,
+    "mappingRecords": 517,
+    "recordsChanged": 517,
+    "recordsAdded": 0,
+    "recordsRemoved": 0,
+    "recordsRelocated": 11,
+    "classification": {
+      "conflict": 17,
+      "partially-verified": 348,
+      "unresolved": 152
+    },
+    "findings": {
+      "blocking": 0,
+      "nonblocking": 3,
+      "byId": {
+        "AF-SM-001": "mapping-generator-defect",
+        "AF-SM-002": "missing-approved-evidence",
+        "AF-SM-003": "mapping-generator-defect",
+        "AF-SM-004": "mapping-generator-defect",
+        "AF-SM-005": "documented-physical-conflict",
+        "AF-SM-006": "source-model-issue",
+        "AF-SM-007": "insufficient-evidence"
+      }
+    }
+  },
+  "provenance": {
+    "platform": {
+      "path": "platform.yaml",
+      "sha256": "50ca1b51f144fbfab4aaa3f97e8f0c908b6c6af8ee9cf6d22162a0a720d72096"
+    },
+    "policy": {
+      "path": "review/config/semantic-mapping-review-policy.yaml",
+      "sha256": "1e0815c4da94a1484825b9aa508f12497d055420ef5935a3f94359c88845bc77"
+    },
+    "sources": [
+      {
+        "id": "lana-context-model",
+        "path": "sources/domain/Lana-ContextModel.pdf",
+        "sha256": "77fd528d1ef8ff5257e203d76aa8b3fa8ebb952fa062b08e6a1924573b7bf51f"
+      },
+      {
+        "id": "lanadb-schema",
+        "path": "sources/schema/lanadb-schema.sql",
+        "sha256": "032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad",
+        "executed": false
+      }
+    ],
+    "approvalsAndPromotions": {
+      "domainApprovalSha256": "40fc6de459787ae9062af53b16bd79293e48dfb84855128648bed16478746b3e",
+      "domainPromotionSha256": "917ead1035a01f4e5333da6d3ce4ca194ab60c1d49625dc9ebd9001c13bbc00b",
+      "physicalSchemaApprovalSha256": "b39326d3bbcf7bc4db18b19e0e658e15708ddc68378221029365c4943807a20c",
+      "physicalSchemaPromotionSha256": "799c89a3561cda98d900685346524b96a411a102ef4ce7d4dd10ba5b34c6a3d5",
+      "approvedOutputHashesVerified": true
+    },
+    "approvedInputRecords": {
+      "domain": 400,
+      "physicalSchema": 31341
+    }
+  },
+  "draftOutputs": {
+    "entity-object-mappings.jsonl": {
+      "records": 99,
+      "sha256": "98e0bcbc0fcd49665d7390f1039d17603191ffca829860c92f7a9e8596bdafda"
+    },
+    "attribute-column-mappings.jsonl": {
+      "records": 79,
+      "sha256": "3228483577259f38ff5af8c74e51c6e1593c57bba5caa9ebfb7220c3fb6764e0"
+    },
+    "identifier-mappings.jsonl": {
+      "records": 16,
+      "sha256": "d9f96b75fbc6af10530f41f1be100203ac3ba17a5bb1f81f2980ff78620fe858"
+    },
+    "relationship-join-mappings.jsonl": {
+      "records": 48,
+      "sha256": "98057ab808609798421fbe768fb1b0e2f59f27c8108475e09af898d634c33517"
+    },
+    "canonical-path-mappings.jsonl": {
+      "records": 88,
+      "sha256": "814dcc96f13c2b937c173d2ad39709787897e1d9864211710076286e344de9b8"
+    },
+    "storage-boundaries.jsonl": {
+      "records": 99,
+      "sha256": "9cf6e2d39fa8008d970a49151df200123677d9eb8d3dbb2497e729d4e296df4f"
+    },
+    "unresolved-mappings.jsonl": {
+      "records": 88,
+      "sha256": "d844d83cdef6cc39fbef0311ccdb56b6a3770c58e2e58821d8deaac57d71399d"
+    }
+  },
+  "checks": {
+    "jsonlSyntax": {
+      "status": "passed",
+      "files": 7,
+      "records": 517
+    },
+    "uniqueStableIds": {
+      "status": "passed",
+      "records": 517,
+      "uniqueIds": 517
+    },
+    "mappingStateConsistency": {
+      "status": "passed",
+      "invalidStateRecords": [],
+      "classificationCounts": {
+        "conflict": 17,
+        "partially-verified": 348,
+        "unresolved": 152
+      }
+    },
+    "runtimeRestrictionPropagation": {
+      "status": "passed",
+      "runtimeAuthorizedRecords": 0,
+      "runtimeEligibleRecords": 0,
+      "violations": []
+    },
+    "approvedReferences": {
+      "status": "passed",
+      "brokenDomainReferences": [],
+      "brokenPhysicalReferences": []
+    },
+    "viewColumnLineage": {
+      "status": "passed",
+      "viewColumnMappings": 117,
+      "lineageReferences": 117,
+      "missingLineageReferences": [],
+      "lineageSourceColumnsValidated": 52
+    },
+    "canonicalPathSegments": {
+      "status": "passed",
+      "activeUnresolvablePaths": [],
+      "activeCanonicalPathsValidated": 88,
+      "activeSegmentsValidated": 235,
+      "unresolvableActiveSegments": [],
+      "preservedUnresolvedPathClaims": 11,
+      "preservedPathlessBaseClaims": 7,
+      "reasonsAndCandidateRefsPresent": true
+    },
+    "conflictPropagation": {
+      "status": "passed",
+      "affectedRecords": 17,
+      "conflictingRecords": 17,
+      "missingConflictState": [],
+      "missingConflictEvidence": [],
+      "rotationPhysicalFact": {
+        "recordId": "analytics-foundation:schema:columns:lisa:measure_process_job:wafer_rotation",
+        "expressionSql": "CAST(wafer_load_orientation AS integer)",
+        "lineageRef": "analytics-foundation:schema:viewLineage:lisa:measure_process_job:projection:wafer_rotation",
+        "domainFindingRef": "analytics-foundation:unresolved:measure-rotation-column"
+      },
+      "machinePhysicalFacts": [
+        "analytics-foundation:schema:tables:lisa:metrology_machine",
+        "analytics-foundation:schema:columns:lisa:metrology_machine:id",
+        "analytics-foundation:schema:columns:lisa:metrology_machine:customername"
+      ],
+      "machineTableName": "metrology_machine",
+      "exactMeasureMachineObjectAbsent": true,
+      "humanDispositionRequired": true
+    },
+    "identifierCategoryPreservation": {
+      "status": "passed",
+      "categories": {
+        "associating": 4,
+        "canonical": 5,
+        "composite": 2,
+        "internal-database": 5
+      },
+      "categoryMismatches": 0,
+      "conflictImpactedIdentifierRecords": []
+    },
+    "relationships": {
+      "status": "passed",
+      "records": 48,
+      "unresolved": 48,
+      "unsupportedJoinClaims": 0,
+      "runtimeEligible": false
+    },
+    "enumLiteralPreservation": {
+      "status": "passed",
+      "approvedRecordId": "analytics-foundation:enumerations:strategytype-simulated",
+      "canonicalValue": "SIMULATED",
+      "wordingVariant": "SIMULATION",
+      "wordingVariantExecutable": false,
+      "mappingOutputsPromoteSimulation": false
+    }
+  },
+  "regressionTests": {
+    "prePatch": "passed-as-regression (all four defects reproduced with expected counts)",
+    "postPatch": "passed",
+    "cases": [
+      "mapping-state consistency",
+      "view-lineage coverage and source/output identity",
+      "invalid canonical segments retained unresolved and excluded from active paths",
+      "conflict-state/evidence propagation and human disposition",
+      "identifier category preservation",
+      "runtime denial on every record",
+      "all active canonical path segments resolve to approved domain names",
+      "SIMULATED canonical enum and SIMULATION wording-only preservation"
+    ]
+  },
+  "protectedFiles": {
+    "status": "passed-unchanged",
+    "fileCount": 37,
+    "hashes": {
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/attributes.jsonl": "3f79f42adedd386c9eb8e7bfb0c3daa9641306dbfd4a5e7730633ddd004fceb9",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/concepts.jsonl": "4cbbcb00d122314d76db5a84980ad061601e728d18ff8d5503717bf90c4e39b2",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/documented-mappings.jsonl": "9713834089579f3e29633f16f6f7d7ff16cb1a5220a7de2be3ece863b656aa87",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/enumerations.jsonl": "863d0c78116ce04c3dee226d41b2b9a493234ab5e911c0f2627495faf1f167c2",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/identifiers.jsonl": "d57aff2a802fb293a92a2f39330edb7f0345ad0a3940412b1c1b5a179e72b8ac",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/relationships.jsonl": "960a7882e99c41e624e91347b019dd2a4af60b62c368618694a45b32d1615859",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/rules.jsonl": "ffab9310dae6e29a8c74784cc943467031e0c297dc5806ac83e5040309e7428a",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/domain/unresolved.jsonl": "40511533b7133310fb844b1f43efd01fdf9a1d61e2b46208cc4ae5f9147378f1",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/columns.jsonl": "47a2e98ebfa542a8b75a2e8c135e0500b7e4016b6b8f7f972b8f56ee30fb1442",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/comments.jsonl": "e60fb7c8048f5f372e0842af60a1cd862d1ab50e37031f9ae50a9a9cf8822cbf",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/foreign-keys.jsonl": "4d27d4ccdbec4248ce3af446a887ad90539efbc1426b82370b90e2ff068204ad",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/functions.jsonl": "f4e9f7c77e65eb50134efb3dd1e6ffd28153515ee3de704b8cc7333990f8ac49",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/indexes.jsonl": "629b829f20c134b82a9db57c2e2687055740168ecec6207915a86142962a7f29",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/parse-errors.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/primary-keys.jsonl": "77fbc33e3a59643ac078933b3c69d3b4328067d7b9875ef24ea52c67135fcddf",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/restricted-objects.jsonl": "8af554344df24de27fdd4c683ef841c4693cbdb31525fbeb714fc6680f5f2912",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/schemas.jsonl": "90db8b57721351ad954d2eaa524807c01c527a028c67ee793ba980a88f190ad4",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/sequences.jsonl": "33b4062b88bf9a576adb2bd987fdb8c6987d529f6c9538f20b1056bd9fbf1ef7",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/tables.jsonl": "717a425841eda0063ea2a13af437de606bf2ea887d95f46baa91d0cd29b3e5d4",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/view-lineage.jsonl": "0c7e6917a135ec944c35747a337d578ad31662438c0f515cdd55c6ba02ae4f97",
+      "knowledge/platforms/analytics-foundation/knowledge/approved/schema/views.jsonl": "d354e1884bfabffbed50868e428cdb771f64b3f4248ed5a97e945b4d0cf5ffbd",
+      "knowledge/platforms/analytics-foundation/platform.yaml": "50ca1b51f144fbfab4aaa3f97e8f0c908b6c6af8ee9cf6d22162a0a720d72096",
+      "knowledge/platforms/analytics-foundation/review/approved/domain-approval.yaml": "40fc6de459787ae9062af53b16bd79293e48dfb84855128648bed16478746b3e",
+      "knowledge/platforms/analytics-foundation/review/approved/domain-promotion.yaml": "917ead1035a01f4e5333da6d3ce4ca194ab60c1d49625dc9ebd9001c13bbc00b",
+      "knowledge/platforms/analytics-foundation/review/approved/schema-extraction-approval.yaml": "b39326d3bbcf7bc4db18b19e0e658e15708ddc68378221029365c4943807a20c",
+      "knowledge/platforms/analytics-foundation/review/approved/schema-extraction-promotion.yaml": "799c89a3561cda98d900685346524b96a411a102ef4ce7d4dd10ba5b34c6a3d5",
+      "knowledge/platforms/analytics-foundation/review/config/semantic-mapping-review-policy.yaml": "1e0815c4da94a1484825b9aa508f12497d055420ef5935a3f94359c88845bc77",
+      "knowledge/platforms/analytics-foundation/review/pending/schema-mapping-change-set.yaml": "3d94862f314f5beda9b958ec616c04b7a0084ce14b397b13869164e15e57211e",
+      "knowledge/platforms/analytics-foundation/review/pending/schema-mapping-review-findings.md": "a16597cd996b958629c70269f32fd2438448dd778b9c2f3538eed1a90f77e29c",
+      "knowledge/platforms/analytics-foundation/review/pending/schema-mapping-review.md": "73806b27cf626ad4ac4312c438e1a585f6780115082d8ccf46725dc69ab23b56",
+      "knowledge/platforms/analytics-foundation/review/pending/semantic-mapping-generation-change-set.yaml": "bef45342b04e25ada3b3018d27f6d3aface5e2a8c09557f47494c043bae8da26",
+      "knowledge/platforms/analytics-foundation/review/pending/semantic-mapping-generation-review.md": "cd996cbc751966e2130f865b77c832e3e03d2cc0c547a159e7b174d2103e7f06",
+      "knowledge/platforms/analytics-foundation/review/pending/semantic-mapping-generation-validation.json": "544b529929965be3e6d1f7031568893296cba4dc33cdc38affb2cd260271c78b",
+      "knowledge/platforms/analytics-foundation/review/pending/semantic-mapping-review-findings.md": "d7b1395ec558d264eb627caa385c8b95b06e1711b7bef468a03687d6edbecdab",
+      "knowledge/platforms/analytics-foundation/sources/domain/Lana-ContextModel.pdf": "77fd528d1ef8ff5257e203d76aa8b3fa8ebb952fa062b08e6a1924573b7bf51f",
+      "knowledge/platforms/analytics-foundation/sources/schema/lanadb-schema.sql": "032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad",
+      "knowledge/platforms/prompts.md": "e2f39907527f7f5a73c0fde62aaac1139110f4e545ace0f872e7d79053d073b3"
+    }
+  },
+  "jsonSchema": {
+    "status": "not-run",
+    "reason": "No mapping-record JSON Schema is configured in the repository."
+  }
 }

@@ -16,5 +16,15 @@ Record my approval with comments for the pending physical-schema review for plat
 Promote the approved physical schema for platform analytics-foundation
 ### Semantics mappings
 Build semantic mappings for platform analytics-foundation
+### Review sematics mappings
+Review the semantic mappings for platform analytics-foundation
+### Correct semantic-mapping defects
+Correct the blocking semantic-mapping defects for platform analytics-foundation
+### sematic-mapping approval
+Record my approval with comments for the pending sematic-mapping review for platform Analytics-foundation
+### promote semantic mapping
+Promote the approved semantic mappings for platform analytics-foundation
+### Release platform knowledge
+Create platform knowledge release 1.0.0 for analytics-foundation
 ### automatically continue to next allowed stage
 Run the next pending stage for platform analytics-foundation

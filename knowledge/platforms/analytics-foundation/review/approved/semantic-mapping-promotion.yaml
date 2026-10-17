@@ -1,0 +1,182 @@
+apiVersion: knowledge-review/v1
+kind: SemanticMappingKnowledgePromotion
+metadata:
+  platformId: analytics-foundation
+  stage: semanticMappings
+spec:
+  status: promoted
+  approvalRef:
+    approvalId: analytics-foundation-semantic-mapping-initial
+    path: review/approved/semantic-mapping-approval.yaml
+    sha256: 890cf3986142fc428441e334c5b48a5a99204912ac924542560b48018ab7af64
+  approvedBy: gkalia
+  approvedOn: 2026-10-17
+  reviewedInputs:
+  - path: review/pending/semantic-mapping-review.md
+    sha256: 1743e1ce0d5e97aa23f5847dd5cc5bf7ebc0392fd6caedb9db5e14173717e776
+  - path: review/pending/semantic-mapping-findings.md
+    sha256: 78aaddc9b728af518cd1a5d2131f1f99d02b62a96b6ede1255229a51de43e1cd
+  - path: review/pending/semantic-mapping-change-set.yaml
+    sha256: f13577f5a43ace7e826f00c663b88457e5ffabe3142e9854061ddec4838b17f9
+  - path: review/pending/semantic-mapping-resolution-report.md
+    sha256: 20eec742c3e54c6f33be92e55fba7b1857d502d577e17a190650b2ade9d3bb1f
+  - path: review/pending/semantic-mapping-validation.json
+    sha256: ae8f460406e1abcffab03338721b768007a57724fc4ea40b8ada36d3e101d4de
+  reviewPolicy:
+    path: review/config/semantic-mapping-review-policy.yaml
+    sha256: 1e0815c4da94a1484825b9aa508f12497d055420ef5935a3f94359c88845bc77
+  sources:
+  - id: lana-context-model
+    path: sources/domain/Lana-ContextModel.pdf
+    sha256: 77fd528d1ef8ff5257e203d76aa8b3fa8ebb952fa062b08e6a1924573b7bf51f
+  - id: lanadb-schema
+    path: sources/schema/lanadb-schema.sql
+    sha256: 032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad
+    executed: false
+  approvedEvidence:
+    domain:
+      approvalPath: review/approved/domain-approval.yaml
+      approvalId: analytics-foundation-domain-initial
+      approvalSha256: 40fc6de459787ae9062af53b16bd79293e48dfb84855128648bed16478746b3e
+      promotionPath: review/approved/domain-promotion.yaml
+      promotionStatus: promoted
+      promotionSha256: 917ead1035a01f4e5333da6d3ce4ca194ab60c1d49625dc9ebd9001c13bbc00b
+      approvedRecords: 400
+      approvedFiles: 8
+      approvedOutputHashesVerified: true
+    physicalSchema:
+      approvalPath: review/approved/schema-extraction-approval.yaml
+      approvalId: analytics-foundation-physical-schema-initial
+      approvalSha256: b39326d3bbcf7bc4db18b19e0e658e15708ddc68378221029365c4943807a20c
+      promotionPath: review/approved/schema-extraction-promotion.yaml
+      promotionStatus: promoted
+      promotionSha256: 799c89a3561cda98d900685346524b96a411a102ef4ce7d4dd10ba5b34c6a3d5
+      approvedRecords: 31341
+      approvedFiles: 13
+      approvedOutputHashesVerified: true
+    scopeNote: 'Prior human approval and promotion chains certify only their own approved
+      domain and physical-schema snapshots. They do not approve semantic mappings,
+      query use, or runtime access.
+
+      '
+  records: 517
+  classification:
+    partially-verified: 348
+    conflict: 17
+    unresolved: 152
+  outputs:
+    entityObjects:
+      draftPath: knowledge/draft/mappings/entity-object-mappings.jsonl
+      draftSha256: 98e0bcbc0fcd49665d7390f1039d17603191ffca829860c92f7a9e8596bdafda
+      records: 99
+      approvedPath: knowledge/approved/mappings/entity-object-mappings.jsonl
+      approvedSha256: b7cca946aacdb7637eefc6a32427c66130007f622e5c0c8530942d2d4750e61a
+    attributeColumns:
+      draftPath: knowledge/draft/mappings/attribute-column-mappings.jsonl
+      draftSha256: 3228483577259f38ff5af8c74e51c6e1593c57bba5caa9ebfb7220c3fb6764e0
+      records: 79
+      approvedPath: knowledge/approved/mappings/attribute-column-mappings.jsonl
+      approvedSha256: 320f68927aa655636137388422e5f5d5e986ca63d7aac3cc0d1bbfc7cd1c7f42
+    identifiers:
+      draftPath: knowledge/draft/mappings/identifier-mappings.jsonl
+      draftSha256: d9f96b75fbc6af10530f41f1be100203ac3ba17a5bb1f81f2980ff78620fe858
+      records: 16
+      approvedPath: knowledge/approved/mappings/identifier-mappings.jsonl
+      approvedSha256: e305964a8856cf04b2bc5e113a2fc29001f64f4f9503e00d767983f777391041
+    relationships:
+      draftPath: knowledge/draft/mappings/relationship-join-mappings.jsonl
+      draftSha256: 98057ab808609798421fbe768fb1b0e2f59f27c8108475e09af898d634c33517
+      records: 48
+      approvedPath: knowledge/approved/mappings/relationship-join-mappings.jsonl
+      approvedSha256: 67af46806173b355e767e89cfb878999202b5d7de34c18e15896e7d44a6ace4c
+    canonicalPaths:
+      draftPath: knowledge/draft/mappings/canonical-path-mappings.jsonl
+      draftSha256: 814dcc96f13c2b937c173d2ad39709787897e1d9864211710076286e344de9b8
+      records: 88
+      approvedPath: knowledge/approved/mappings/canonical-path-mappings.jsonl
+      approvedSha256: f811502cdcd0bac0acf2d9fbd9a257bd42ed039a553f23fb5d4dbeefbc0bdac4
+    storageBoundaries:
+      draftPath: knowledge/draft/mappings/storage-boundaries.jsonl
+      draftSha256: 9cf6e2d39fa8008d970a49151df200123677d9eb8d3dbb2497e729d4e296df4f
+      records: 99
+      approvedPath: knowledge/approved/mappings/storage-boundaries.jsonl
+      approvedSha256: 8d14e4824e36164af1da91b6bcea1589f3566eeb7315ef289ee4e5f30596dec6
+    unresolved:
+      draftPath: knowledge/draft/mappings/unresolved-mappings.jsonl
+      draftSha256: d844d83cdef6cc39fbef0311ccdb56b6a3770c58e2e58821d8deaac57d71399d
+      records: 88
+      approvedPath: knowledge/approved/mappings/unresolved-mappings.jsonl
+      approvedSha256: 6d293de6243d2a81402901ea98f0d5de85c306c0bc989179e9d0c2c1fe1a03a6
+  mutation: Copied checksum-bound draft records; changed only status to approved and
+    added approvalRef. Evidence states, conflicts, facts, IDs, references and runtime
+    denial are unchanged.
+  draftsRetained: true
+  conditions:
+  - id: partial-and-unresolved-evidence
+    description: 'Retain all partial and unresolved states, missing-evidence descriptions,
+      source-model limitations, and references. Approval does not upgrade any mapping
+      to verified. All 48 unsupported relationship joins remain unresolved.
+
+      '
+  - id: conflicts-require-separate-disposition
+    description: 'Retain both evidence sides on all 17 conflict-linked records. This
+      layer approval does not choose wafer_rotation over wafer_load_orientation or
+      MEASURE_MACHINE over METROLOGY_MACHINE and is not a resolution of either conflict.
+      Separate explicit human disposition remains required.
+
+      '
+  - id: unresolved-path-claims
+    description: 'Preserve four invalid-segment paths and seven pathless base claims
+      under their stable IDs in unresolved mappings. Do not invent canonical paths
+      or silently substitute similar attribute names.
+
+      '
+  - id: identifier-and-enum-preservation
+    description: 'Preserve canonical, associating, composite and internal-database
+      identifier categories without substitution. SIMULATED remains canonical; SIMULATION
+      remains nonexecutable source wording.
+
+      '
+  - id: runtime-denial
+    description: 'All 517 records remain runtimeAuthorized=false and runtimeEligible=false.
+      Preserve physical-object restrictions, unknown computed types and lineage evidence.
+      Partial, unresolved and conflicting records are not runtime facts.
+
+      '
+  - id: immutable-reviewed-snapshot
+    description: 'Approval covers only the checksum-bound snapshot and does not modify
+      approved domain or physical-schema knowledge. Subsequent semantic changes require
+      review and approval; repository-level validation and applicable release gates
+      remain required before any immutable runtime release.
+
+      '
+  runtimeAuthorization:
+    semanticMappings: false
+    queryUse: false
+    restrictedObjects: false
+    reason: 'This approval accepts the mapping layer with comments, not executable
+      semantics. No mapping is verified or runtime-eligible. Promotion is a separate
+      action and must preserve every state and runtime restriction.
+
+      '
+  conflictsResolved: false
+  semanticVerificationPerformed: false
+  releaseCreated: false
+  validation:
+    result: passed
+    checks:
+    - human approval scope and reviewed hashes
+    - seven draft output checksums
+    - approved evidence inventories and approval/promotion hashes
+    - source and policy hashes
+    - 517 unique stable IDs and source references
+    - approved domain and physical references
+    - evidence-state and classification consistency
+    - all runtime flags false
+    - persisted approved/draft exact parity except promotion metadata
+    - all existing platform files unchanged
+    limitations:
+    - Approval accepts limitations; no mapping is verified or executable.
+    - Separate human conflict disposition and further evidence remain required.
+    - Repository-level validation and all applicable release gates remain required
+      before runtime release.

@@ -1,0 +1,100 @@
+{
+  "coverage": {
+    "attributeColumn": {
+      "declared": 76,
+      "unresolved": 3
+    },
+    "canonicalPath": {
+      "declared": 92,
+      "unresolved": 7
+    },
+    "deferredFindingIds": [
+      "analytics-foundation:unresolved:measure-rotation-column",
+      "analytics-foundation:unresolved:exposure-output-prefix",
+      "analytics-foundation:unresolved:measure-machine-name",
+      "analytics-foundation:unresolved:wafer-measures-direction",
+      "analytics-foundation:unresolved:reworked-path-spelling",
+      "analytics-foundation:unresolved:otas-controlfunctional",
+      "analytics-foundation:unresolved:schema-unverified",
+      "analytics-foundation:unresolved:path-example-mismatch"
+    ],
+    "deferredSchemaFindings": 8,
+    "documentedDomainMappingsAssessed": 99,
+    "documentedMappingPhysicalCommentRefs": 20,
+    "entityObject": {
+      "declared": 92,
+      "unresolved": 7
+    },
+    "identifier": {
+      "declared": 5,
+      "unresolved": 11
+    },
+    "implementationEvidenceRecords": 0,
+    "inferredMappings": 0,
+    "relationshipJoin": {
+      "unresolved": 48
+    },
+    "storageBoundary": {
+      "declared": 92,
+      "unresolved": 7
+    },
+    "verifiedSemanticMappings": 0
+  },
+  "humanApproval": "not-performed",
+  "localStructuralChecks": "passed",
+  "outputs": {
+    "attributeColumns": {
+      "path": "knowledge/draft/mappings/attribute-column-mappings.jsonl",
+      "records": 79,
+      "sha256": "d3e2fdd27e06d6b85a6f0dbc7469a4d6226aed7ec8b9c8c761abf362629d8062"
+    },
+    "canonicalPaths": {
+      "path": "knowledge/draft/mappings/canonical-path-mappings.jsonl",
+      "records": 99,
+      "sha256": "bef9cd3276c67bbfaf86bf85ad8aecedbbf683b88f3ded14685fb5d75bc93820"
+    },
+    "entityObjects": {
+      "path": "knowledge/draft/mappings/entity-object-mappings.jsonl",
+      "records": 99,
+      "sha256": "1bceb5320b875a4437e520d1d2e1d2d239848de27e581aff70700f86ab5c09b1"
+    },
+    "identifiers": {
+      "path": "knowledge/draft/mappings/identifier-mappings.jsonl",
+      "records": 16,
+      "sha256": "71db293e0ec825105c1f779e82a4a354b61ac4a30042234119cb34f7c118fc31"
+    },
+    "relationships": {
+      "path": "knowledge/draft/mappings/relationship-join-mappings.jsonl",
+      "records": 48,
+      "sha256": "31450abc8cdeff0063ee43460ba208b265e5a63d798cadf8b34b64f83185a949"
+    },
+    "storageBoundaries": {
+      "path": "knowledge/draft/mappings/storage-boundaries.jsonl",
+      "records": 99,
+      "sha256": "e609d120464c168106e2edb5ae8db6b645d4e979e651ca6c7e8979e63e1953a8"
+    },
+    "unresolved": {
+      "path": "knowledge/draft/mappings/unresolved-mappings.jsonl",
+      "records": 77,
+      "sha256": "acf77650e1386f5665fc5e42d1dd75455a494abd6599e0169c362d5a2f3913cb"
+    }
+  },
+  "platformId": "analytics-foundation",
+  "policyBasedReview": "blocked",
+  "policyGate": {
+    "configuredPolicyExists": false,
+    "configuredPolicyPath": "review/config/schema-mapping-review-policy.yaml",
+    "disposition": "human-review-gate; no policy invented and no auto-approval",
+    "semanticPolicyBytes": 0,
+    "semanticPolicyExists": true,
+    "semanticPolicyPath": "review/config/semantic-mapping-review-policy.yaml",
+    "usablePolicy": false
+  },
+  "promotion": "not-performed",
+  "protectedPreexistingChecksumsUnchanged": true,
+  "release": "not-created",
+  "result": "passed-with-review-gates",
+  "runtimeAuthorized": false,
+  "sqlExecuted": false,
+  "stage": "semantic-mapping"
+}

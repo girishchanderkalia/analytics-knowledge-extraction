@@ -1,33 +1,51 @@
-# Semantic mapping draft review — analytics-foundation
+# Semantic mapping review — analytics-foundation
 
-Status: draft only; human review is required. No mapping approval, promotion, or release was performed.
+**Recommendation: ACCEPT_WITH_COMMENTS.** The four blocking generator/evidence findings are corrected. This is a policy-grounded recommendation only; human approval, promotion, and release have not been performed. Draft mappings remain runtime-ineligible.
 
-## Scope and evidence
+## Scope and immutable evidence
 
-- Assessed all 99 approved documented-mapping records and all eight approved deferred schema findings.
-- Inputs: checksum-bound approved domain knowledge (400 records) and approved physical schema knowledge (31,341 records across 13 files); approval and promotion chains were checked before drafting.
-- Classification is explicit on every mapping record. Exact physical object/column declarations are `declared`; unsupported mappings are `unresolved`. No `implemented`, `verified`, or `inferred` claims were made.
-- A matching name or source-declared mapping does not establish semantic equivalence. No query/code implementation evidence was available. No SQL was executed.
-- Domain and physical evidence references are preserved as record IDs and source references. Every output record is `draft` and `runtimeAuthorized: false`.
-- Physical database comments on exact mapped records are retained with their comment refs and untrusted-source flag; they are review context only, not semantic verification.
-- Canonical, associating, internal-database, and composite identifiers are retained as separate categories. Internal numeric identifiers are not substituted for canonical/composite identifiers.
-- The approved canonical enum literal remains `SIMULATED`; `SIMULATION` remains wording-only and nonexecutable.
-- Restricted objects and unknown computed data types in the approved physical layer were left untouched.
+- Configured stage: `spec.review.stages.semanticMappings`; draft path `knowledge/draft/mappings`.
+- Policy: `review/config/semantic-mapping-review-policy.yaml`, SHA-256 `1e0815c4da94a1484825b9aa508f12497d055420ef5935a3f94359c88845bc77`.
+- Platform configuration SHA-256: `50ca1b51f144fbfab4aaa3f97e8f0c908b6c6af8ee9cf6d22162a0a720d72096`.
+- Domain PDF SHA-256: `77fd528d1ef8ff5257e203d76aa8b3fa8ebb952fa062b08e6a1924573b7bf51f`; schema SQL SHA-256: `032b22660a1902c41242da8824f2ac0cebaa90ccefc3e6915479eb9b1dddd6ad`. **No SQL was executed.**
+- Approved domain: 400 records across 8 checksum-bound outputs; approved physical schema: 31,341 records across 13 checksum-bound outputs. Both approved output inventories matched their existing approval/promotion snapshots before and after repair. Approved knowledge, approvals, promotions, and source artifacts were not modified.
+- Assessed all 99 approved documented mappings and all eight deferred schema findings. All seven configured draft mapping outputs retain 517 total records and every stable ID. Four invalid-segment paths and seven documented view-base claims without a path were relocated intact to unresolved mappings, not deleted or renamed.
+- The archived prior generation remains unchanged in `semantic-mapping-generation-review.md`, `semantic-mapping-generation-change-set.yaml`, and `semantic-mapping-generation-validation.json`. The historical `semantic-mapping-review-findings.md`, physical `schema-mapping-*` review artifacts, and dirty `knowledge/platforms/prompts.md` are preserved byte-for-byte.
+- No semantic mapping resolution set exists. The deterministic corrections address explicit state/lineage/parser propagation defects only; no human semantic choice was invented.
 
-## Coverage result
+## Result
 
-- 99/99 documented mappings appear in canonical-path assessment and are also individually assessed for exact object, column (where stated), and storage target evidence.
-- Exact physical declaration does not certify the meaning or traversal of a canonical path.
-- Entity/object, attribute/column, identifier, relationship/join, canonical-path and storage-boundary output counts and per-classification dispositions are recorded in `semantic-mapping-change-set.yaml`.
-- All eight deferred findings remain individually unresolved for human disposition. In addition, exact target absences, all unmapped domain identifiers and all domain relationships without direct FK evidence are retained in `unresolved-mappings.jsonl`.
-- No relationship-to-FK association was inferred from names or cardinality; no generic name similarity was promoted into a semantic mapping.
+| Measure | Result |
+|---|---:|
+| Documented mappings assessed | 99 / 99 |
+| Deferred schema findings assessed | 8 / 8 |
+| Mapping records retained | 517 |
+| Stable IDs added / removed | 0 / 0 |
+| Records changed | 517 |
+| Records relocated from active canonical paths to unresolved | 11 |
+| Records added / removed by relocation | 0 / 0 |
+| State counts | {"conflict": 17, "partially-verified": 348, "unresolved": 152} |
+| Runtime-authorized / runtime-eligible records | 0 / 0 |
+| Relationship joins verified | 0 (48 remain unresolved) |
 
-## Review gate and filename collision
+## Finding dispositions
 
-`platform.yaml` configures `schema-mapping-review.md`, `schema-mapping-review-findings.md`, and `schema-mapping-change-set.yaml`, but those exact pending files are pre-existing historical physical-extraction artifacts. They were preserved byte-for-byte. This semantic review is therefore written under distinctive `semantic-mapping-*` pending filenames and does not replace or reinterpret those historical artifacts.
+1. **AF-SM-001 — corrected.** Every record now uses a policy verification state. Exact physical declarations are preserved separately as `physicalEvidenceState: declared`; 348 partial mappings are not promoted to verified.
+2. **AF-SM-002 — corrected.** All 117 eligible view-column mappings cite the exact approved projection-lineage record. Output-column identity, lineage approval reference, and source-column IDs validate.
+3. **AF-SM-003 — blocking defect corrected; underlying path discrepancies unresolved.** Four path claims retain their original strings and physical facts, and seven documented view-base claims retain their null path and base-object facts. All eleven were removed from the active canonical-path output and relocated under the same stable IDs to unresolved mappings with reasons and references. `isreworked` was not changed to `reworked`/`latestReworked`; `controlfunctional` was not changed to `controlFunction`.
+4. **AF-SM-004 — propagation defect corrected; human conflict remains.** All 17 affected entity/attribute/path/storage/unresolved records are `conflict`, preserve the original domain mapping and cited finding, and carry the conflicting approved physical facts. No `wafer_rotation`/`wafer_load_orientation` interpretation or `MEASURE_MACHINE`/`METROLOGY_MACHINE` substitution was selected. Human disposition remains required. No identifier record was implicated by these attribute/object claims; all identifier categories remain independent.
 
-The configured `review/config/schema-mapping-review-policy.yaml` is absent. The newly present `review/config/semantic-mapping-review-policy.yaml` is empty and unusable. This is an explicit policy-based review limitation. No policy was invented, no automatic approval was performed, and this package is not approval-ready until a human resolves the policy/configuration gate and reviews these drafts.
+Identifier categories were preserved independently (`canonical` 5, `associating` 4, `composite` 2, `internal-database` 5). The approved `SIMULATED` enum remains canonical; `SIMULATION` remains wording-only and nonexecutable.
+5. **AF-SM-005 — nonblocking documented physical conflicts.** Both conflicts remain explicit, runtime-denied, and pending human disposition.
+6. **AF-SM-006 — nonblocking source-model limitations.** The six other deferred schema findings remain assessed and unchanged.
+7. **AF-SM-007 — nonblocking insufficient evidence.** Unsupported mappings and all 48 relationship joins remain unresolved with reasons; no guessed FK/join or identifier substitution was added.
 
-## Validation boundary
+## Validation
 
-Local deterministic checks cover JSONL syntax, stable unique IDs, required metadata, source references, domain/physical record references, checksums, approved scope, per-output coverage, evidence classifications, runtime restrictions, and the retained identifier/enum/restriction invariants. This is not repository-wide schema validation, does not establish semantic truth, and does not authorize query use or runtime access.
+All deterministic checks passed: JSONL syntax and stable IDs; approved domain/schema reference integrity; policy-state consistency; approved view-lineage source/output identity and approval refs; active canonical-path segment validation across 88 paths and 235 segments; conflict propagation; identifier-category and enum preservation; unresolved relationships; and draft/runtime denial. Check-level counts and output hashes are in `semantic-mapping-validation.json`. Regression tests reproduced the original defects before correction and passed against the repaired dataset.
+
+## Recommendation and boundary
+
+`ACCEPT_WITH_COMMENTS` follows policy: no blocking findings remain; nonblocking source limitations, four unresolved path spellings, seven pathless base claims, and two human-disposition conflicts remain. This is **not** mapping approval. Every record remains draft and runtime-denied. No approval, promotion, release, or SQL execution occurred.
+
+See `semantic-mapping-resolution-report.md` for per-record before/after hashes, exact changed outputs, checksums, regression results, and protected-file hash verification.

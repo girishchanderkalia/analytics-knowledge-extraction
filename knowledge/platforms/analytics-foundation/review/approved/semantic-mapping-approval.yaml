@@ -1,0 +1,120 @@
+apiVersion: knowledge-review/v1
+kind: HumanApproval
+
+metadata:
+  platformId: analytics-foundation
+  stage: semanticMappings
+  approvalId: analytics-foundation-semantic-mapping-initial
+
+spec:
+  decision: approved-with-comments
+  approvedBy: gkalia
+  approvedOn: 2026-10-17
+  approvalEvidence:
+    type: explicit-user-instruction-with-platform-confirmation
+    instruction: Record my approval with comments for the pending sematic-mapping review for platform
+    confirmation: Approve analytics-foundation with comments (Recommended)
+    confirmedScope: Retain unresolved mappings, conflicts, and runtime restrictions.
+    recordedAt: '2026-10-17T04:20:55.189+02:00'
+    approverIdentityBasis: Existing human approval identity in review/approved/domain-approval.yaml.
+
+  reviewedInputs:
+    - review/pending/semantic-mapping-review.md
+    - review/pending/semantic-mapping-findings.md
+    - review/pending/semantic-mapping-change-set.yaml
+    - review/pending/semantic-mapping-resolution-report.md
+    - review/pending/semantic-mapping-validation.json
+
+  reviewedInputChecksums:
+    - path: review/pending/semantic-mapping-review.md
+      sha256: 1743e1ce0d5e97aa23f5847dd5cc5bf7ebc0392fd6caedb9db5e14173717e776
+    - path: review/pending/semantic-mapping-findings.md
+      sha256: 78aaddc9b728af518cd1a5d2131f1f99d02b62a96b6ede1255229a51de43e1cd
+    - path: review/pending/semantic-mapping-change-set.yaml
+      sha256: f13577f5a43ace7e826f00c663b88457e5ffabe3142e9854061ddec4838b17f9
+    - path: review/pending/semantic-mapping-resolution-report.md
+      sha256: 20eec742c3e54c6f33be92e55fba7b1857d502d577e17a190650b2ade9d3bb1f
+    - path: review/pending/semantic-mapping-validation.json
+      sha256: ae8f460406e1abcffab03338721b768007a57724fc4ea40b8ada36d3e101d4de
+
+  reviewPolicy:
+    path: review/config/semantic-mapping-review-policy.yaml
+    sha256: 1e0815c4da94a1484825b9aa508f12497d055420ef5935a3f94359c88845bc77
+
+  approvedKnowledge:
+    path: knowledge/draft/mappings
+    records: 517
+    files: 7
+    snapshot:
+      validationPath: review/pending/semantic-mapping-validation.json
+      validationSha256: ae8f460406e1abcffab03338721b768007a57724fc4ea40b8ada36d3e101d4de
+      outputChecksumsField: draftOutputs
+      approvedEvidenceHashesField: provenance
+      changeSetPath: review/pending/semantic-mapping-change-set.yaml
+      changeSetSha256: f13577f5a43ace7e826f00c663b88457e5ffabe3142e9854061ddec4838b17f9
+    classification:
+      partially-verified: 348
+      unresolved: 152
+      conflict: 17
+    scope: Acceptance of the reviewed mapping layer with limitations; not verification of semantic equivalence.
+
+  reviewOutcome:
+    recommendation: ACCEPT_WITH_COMMENTS
+    blockingFindings: 0
+    resolvedBlockingFindings: 4
+    nonblockingFindings: 3
+
+  conditions:
+    - id: partial-and-unresolved-evidence
+      description: >
+        Retain all partial and unresolved states, missing-evidence descriptions,
+        source-model limitations, and references. Approval does not upgrade any
+        mapping to verified. All 48 unsupported relationship joins remain unresolved.
+    - id: conflicts-require-separate-disposition
+      description: >
+        Retain both evidence sides on all 17 conflict-linked records. This layer
+        approval does not choose wafer_rotation over wafer_load_orientation or
+        MEASURE_MACHINE over METROLOGY_MACHINE and is not a resolution of either
+        conflict. Separate explicit human disposition remains required.
+    - id: unresolved-path-claims
+      description: >
+        Preserve four invalid-segment paths and seven pathless base claims under
+        their stable IDs in unresolved mappings. Do not invent canonical paths
+        or silently substitute similar attribute names.
+    - id: identifier-and-enum-preservation
+      description: >
+        Preserve canonical, associating, composite and internal-database identifier
+        categories without substitution. SIMULATED remains canonical; SIMULATION
+        remains nonexecutable source wording.
+    - id: runtime-denial
+      description: >
+        All 517 records remain runtimeAuthorized=false and runtimeEligible=false.
+        Preserve physical-object restrictions, unknown computed types and lineage
+        evidence. Partial, unresolved and conflicting records are not runtime facts.
+    - id: immutable-reviewed-snapshot
+      description: >
+        Approval covers only the checksum-bound snapshot and does not modify
+        approved domain or physical-schema knowledge. Subsequent semantic changes
+        require review and approval; repository-level validation and applicable
+        release gates remain required before any immutable runtime release.
+
+  runtimeAuthorization:
+    semanticMappings: false
+    queryUse: false
+    restrictedObjects: false
+    reason: >
+      This approval accepts the mapping layer with comments, not executable
+      semantics. No mapping is verified or runtime-eligible. Promotion is a
+      separate action and must preserve every state and runtime restriction.
+
+  nextStage:
+    id: semantic-mapping-promotion
+    targetPath: knowledge/approved/mappings
+    requiresSeparateExecution: true
+
+  comments:
+    - The user explicitly confirmed analytics-foundation and retention of conflicts and limitations.
+    - All four blocking generator defects are corrected; three nonblocking finding groups remain.
+    - All 99 documented mappings and eight deferred schema findings were assessed.
+    - Approval is not conflict resolution, semantic verification, promotion or release authorization.
+    - Pending review and draft artifacts remain unchanged as the reviewed evidence snapshot.
